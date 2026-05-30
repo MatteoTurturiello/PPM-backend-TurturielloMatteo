@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Post di {{ profile_owner.username }}</h2>
+{% for post in posts %}
+<div class="card">
+    <p>{{ post.content }}</p>
+    <p><small>{{ post.created_at|date:'d/m/Y H:i' }}</small></p>
+</div>
+{% empty %}
+<p>Nessun post pubblicato.</p>
+{% endfor %}
+{% endblock %}

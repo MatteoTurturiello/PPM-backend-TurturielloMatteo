@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Azione non consentita</h2>
+<p>Non hai i permessi necessari per eseguire questa operazione.</p>
+<a class="button" href="{% url 'social:feed' %}">Torna al feed</a>
+{% endblock %}

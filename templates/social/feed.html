@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Feed notizie</h2>
+
+{% if pending_requests %}
+    <h3>Richieste ricevute</h3>
+    {% for req in pending_requests %}
+        <div class="card">
+            <p>{{ req.from_user.username }} vuole collegarsi con te.</p>
+            <a class="button" href="{% url 'social:respond-friend-request' req.pk 'accept' %}">Accetta</a>
+            <a class="button button-danger" href="{% url 'social:respond-friend-request' req.pk 'reject' %}">Rifiuta</a>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% for post in posts %}
+<div class="card">
+    <p><strong>{{ post.author.username }}</strong> - {{ post.created_at|date:'d/m/Y H:i' }}</p>
+    <p>{{ post.content }}</p>
+    {% if user.pk == post.author.pk %}
+        <a class="button" href="{% url 'social:post-update' post.pk %}">Modifica</a>
+    {% endif %}
+    {% if user.pk == post.author.pk or user.is_moderator %}
+        <a class="button button-danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
+    {% endif %}
+</div>
+{% empty %}
+<p>Nessun post da mostrare nel feed.</p>
+{% endfor %}
+{% endblock %}

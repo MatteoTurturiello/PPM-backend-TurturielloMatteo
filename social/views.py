@@ -48,7 +48,6 @@ class ProfilePostsView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        self.profile_owner = get_object_or_404(User, pk=self.kwargs['pk'])
         return Post.objects.filter(author=self.profile_owner).select_related('author')
 
     def dispatch(self, request, *args, **kwargs):

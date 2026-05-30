@@ -72,6 +72,35 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 ## Online deployment link
 - https://ppm-backend-turturiellomatteo-production.up.railway.app/
 
+## Railway deployment (refined)
+
+### Required Railway variables
+Set these variables in the Railway project:
+
+- `DJANGO_SECRET_KEY`: chiave segreta Django (obbligatoria in produzione).
+- `DJANGO_DEBUG`: `False` in produzione.
+- `DJANGO_ALLOWED_HOSTS`: host separati da virgola, ad esempio:
+  `ppm-backend-turturiellomatteo-production.up.railway.app`.
+- `DJANGO_CSRF_TRUSTED_ORIGINS`: URL completi separati da virgola, ad esempio:
+  `https://ppm-backend-turturiellomatteo-production.up.railway.app`.
+- `RAILWAY_PUBLIC_DOMAIN`: dominio pubblico Railway (opzionale, aggiunto automaticamente agli host consentiti).
+
+### Production behavior enabled in settings
+When `DJANGO_DEBUG=False`, the app automatically enables:
+- forced redirect to HTTPS,
+- secure `session` and `csrf` cookies,
+- correct handling of Railway HTTPS proxy headers (`X-Forwarded-Proto`).
+
+### Real online URL check
+To verify that the site is online from your machine:
+
+```bash
+nslookup ppm-backend-turturiellomatteo-production.up.railway.app
+curl -I https://ppm-backend-turturiellomatteo-production.up.railway.app/
+```
+
+If you receive `HTTP/1.1 200` or `302`, the deployment is reachable.
+
 ## Browser test scenario
 1. Accedi come `user_demo`.
 2. Vai su **Nuovo post**, crea un post, poi modificalo dal feed.

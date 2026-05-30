@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Utenti disponibili</h2>
+{% for profile_user in users %}
+<div class="card">
+    <p><strong>{{ profile_user.username }}</strong> - {{ profile_user.get_role_display }}</p>
+    <a class="button" href="{% url 'accounts:profile-detail' profile_user.pk %}">Profilo</a>
+    <a class="button" href="{% url 'social:send-friend-request' profile_user.pk %}">Invia richiesta amicizia</a>
+</div>
+{% empty %}
+<p>Nessun altro utente disponibile.</p>
+{% endfor %}
+{% endblock %}

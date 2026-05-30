@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>PPM Social Network</h1>
+<p>Accedi o registrati per iniziare.</p>
+<a class="button" href="{% url 'login' %}">Login</a>
+<a class="button" href="{% url 'accounts:signup' %}">Registrazione</a>
+{% endblock %}

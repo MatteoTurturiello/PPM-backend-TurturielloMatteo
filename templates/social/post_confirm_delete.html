@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Elimina post</h2>
+<p>Confermi l'eliminazione di questo post?</p>
+<p><em>{{ object.content }}</em></p>
+<form method="post">
+    {% csrf_token %}
+    <button class="button button-danger" type="submit">Conferma</button>
+</form>
+{% endblock %}

@@ -74,15 +74,15 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 
 ## Railway deployment (step by step)
 
-### 1) Crea account Railway
+### 1) Create Railway account
 - Vai su Railway e fai login con GitHub.
 - Autorizza Railway ad accedere al repository.
 
-### 2) Crea il progetto da GitHub
+### 2) Create project from GitHub
 - In Railway: **New Project** → **Deploy from GitHub Repo**.
 - Seleziona `PPM-backend-TurturielloMatteo`.
 
-### 3) Configura le variabili ambiente
+### 3) Configure environment variables
 Apri il servizio su Railway → tab **Variables** e imposta:
 
 - `DJANGO_SECRET_KEY`: chiave segreta lunga e casuale.
@@ -93,26 +93,26 @@ Apri il servizio su Railway → tab **Variables** e imposta:
   `https://ppm-backend-turturiellomatteo-production.up.railway.app`.
 - `RAILWAY_PUBLIC_DOMAIN`: opzionale, Railway lo valorizza automaticamente e il progetto lo aggiunge ad `ALLOWED_HOSTS`.
 
-### 4) Build e deploy
+### 4) Build and deploy
 - Non serve lanciare build manuale: Railway effettua build e deploy ad ogni push su GitHub.
 - Il file `railway.toml` contiene già il comando di avvio:
   ```
   python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT
   ```
 
-### 5) Verifica dominio pubblico
+### 5) Verify public domain
 - In Railway apri **Settings/Networking** e copia il dominio pubblico assegnato.
 - Usa esattamente quel dominio nelle variabili `DJANGO_ALLOWED_HOSTS` e `DJANGO_CSRF_TRUSTED_ORIGINS`.
 
-### 6) Se il browser mostra `Not Found`
+### 6) If browser shows `Not Found`
 Controlla in ordine:
 1. Dominio corretto e collegato al servizio giusto.
 2. Ultimo deploy completato senza errori (tab **Deployments/Logs**).
 3. Variabili impostate correttamente (`DJANGO_ALLOWED_HOSTS`, `DJANGO_CSRF_TRUSTED_ORIGINS`, `DJANGO_DEBUG=False`).
 4. Ri-deploy dopo modifica variabili.
 
-### 7) Test finale
-- Apri `https://<tuo-dominio-railway>/` oppure `https://<tuo-dominio-railway>/accounts/login/`.
+### 7) Final test
+- Apri `https://your-domain.up.railway.app/` oppure `https://your-domain.up.railway.app/accounts/login/`.
 - Se risponde, il deploy è attivo e i push successivi aggiorneranno automaticamente il servizio.
 
 ### Production behavior enabled in settings

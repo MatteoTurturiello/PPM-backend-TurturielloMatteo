@@ -14,6 +14,14 @@ from .models import FriendRequest, Friendship, Notification, Post
 User = get_user_model()
 
 
+def _notify_post_deleted_by_moderator(post):
+    """Create an in-app notification for the post author when a moderator deletes their post."""
+    Notification.objects.create(
+        user_id=post.author_id,
+        message='Il tuo post è stato eliminato da un moderatore.',
+    )
+
+
 def friendship_filter_for(user):
     return Q(friendships_initiated__user2=user) | Q(friendships_received__user1=user)
 
@@ -115,10 +123,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         post = self.get_object()
         if request.user.pk != post.author_id:
-            Notification.objects.create(
-                user_id=post.author_id,
-                message='Il tuo post è stato eliminato da un moderatore.',
-            )
+            _notify_post_deleted_by_moderator(post)
         messages.success(self.request, 'Post eliminato.')
         return super().delete(request, *args, **kwargs)
 

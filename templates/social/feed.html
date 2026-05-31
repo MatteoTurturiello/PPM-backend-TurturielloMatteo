@@ -5,7 +5,7 @@
 {% if unread_notifications %}
     <h3>Notifiche</h3>
     {% for notif in unread_notifications %}
-        <div class="card" style="background:#fef9c3;">
+        <div class="card notification-card">
             <p>{{ notif.message }}</p>
             <a class="button" href="{% url 'social:dismiss-notification' notif.pk %}">Segna come letta</a>
         </div>

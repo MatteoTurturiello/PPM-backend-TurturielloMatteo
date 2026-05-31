@@ -72,7 +72,7 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 ## Online deployment link
 - https://ppm-backend-turturiellomatteo-production.up.railway.app/
 
-## Railway deployment (step by step)
+## Deploy su Railway (passo passo)
 
 ### 1) Crea account Railway
 - Vai su https://railway.app e fai login con GitHub.
@@ -112,7 +112,7 @@ Controlla in ordine:
 4. Ri-deploy dopo modifica variabili.
 
 ### 7) Test finale
-- Apri `https://<your-app-name>.up.railway.app/` oppure `https://<your-app-name>.up.railway.app/accounts/login/`.
+- Apri `https://<project-name>-production.up.railway.app/` oppure `https://<project-name>-production.up.railway.app/accounts/login/`.
 - Se risponde, il deploy è attivo e i push successivi aggiorneranno automaticamente il servizio.
 
 ### Production behavior enabled in settings

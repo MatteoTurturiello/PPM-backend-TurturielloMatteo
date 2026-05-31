@@ -24,6 +24,10 @@ RAILWAY_PUBLIC_DOMAIN = os.getenv('RAILWAY_PUBLIC_DOMAIN', '').strip()
 if RAILWAY_PUBLIC_DOMAIN and RAILWAY_PUBLIC_DOMAIN not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
 
+# Railway healthchecks use this hostname — must be in ALLOWED_HOSTS.
+if 'healthcheck.railway.app' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('healthcheck.railway.app')
+
 CSRF_TRUSTED_ORIGINS = csv_env('DJANGO_CSRF_TRUSTED_ORIGINS')
 
 INSTALLED_APPS = [
@@ -108,5 +112,6 @@ if not DEBUG:
     # Safe on Railway because the platform terminates TLS and sets X-Forwarded-Proto.
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
+    SECURE_REDIRECT_EXEMPT = [r'^healthz/$']  # Allow HTTP healthcheck from Railway
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True

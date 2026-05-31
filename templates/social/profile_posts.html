@@ -5,6 +5,9 @@
 <div class="card">
     <p>{{ post.content }}</p>
     <p><small>{{ post.created_at|date:'d/m/Y H:i' }}</small></p>
+    {% if user.pk == profile_owner.pk or user.is_moderator %}
+        <a class="button button-danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
+    {% endif %}
 </div>
 {% empty %}
 <p>Nessun post pubblicato.</p>

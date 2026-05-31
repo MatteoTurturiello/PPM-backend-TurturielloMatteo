@@ -112,7 +112,7 @@ Controlla in ordine:
 4. Ri-deploy dopo modifica variabili.
 
 ### 7) Test finale
-- Apri `https://your-domain.up.railway.app/` oppure `https://your-domain.up.railway.app/accounts/login/`.
+- Apri `https://<your-app-name>.up.railway.app/` oppure `https://<your-app-name>.up.railway.app/accounts/login/`.
 - Se risponde, il deploy è attivo e i push successivi aggiorneranno automaticamente il servizio.
 
 ### Production behavior enabled in settings

@@ -75,7 +75,7 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 ## Railway deployment (step by step)
 
 ### 1) Crea account Railway
-- Vai su Railway e fai login con GitHub.
+- Vai su https://railway.app e fai login con GitHub.
 - Autorizza Railway ad accedere al repository.
 
 ### 2) Crea il progetto da GitHub

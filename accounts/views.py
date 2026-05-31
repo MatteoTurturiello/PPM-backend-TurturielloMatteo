@@ -2,10 +2,13 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
-from .forms import ProfileForm, UserRegistrationForm
+from social.models import Notification
+
+from .forms import BannedAwareAuthenticationForm, ProfileForm, UserRegistrationForm
 from .mixins import ModeratorRequiredMixin
 
 User = get_user_model()
@@ -15,6 +18,10 @@ class SignUpView(CreateView):
     form_class = UserRegistrationForm
     template_name = 'registration/signup.html'
     success_url = '/accounts/login/'
+
+
+class CustomLoginView(LoginView):
+    form_class = BannedAwareAuthenticationForm
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
@@ -66,6 +73,16 @@ def toggle_user_status(request, pk):
 
     target.is_active = not target.is_active
     target.save(update_fields=['is_active'])
+    if not target.is_active:
+        Notification.objects.create(
+            user=target,
+            message='Il tuo account è stato sospeso da un moderatore.',
+        )
+    else:
+        Notification.objects.create(
+            user=target,
+            message='Il tuo account è stato riattivato da un moderatore.',
+        )
     messages.success(request, f"Stato account di {target.username} aggiornato.")
     return redirect('accounts:moderation-users')
 

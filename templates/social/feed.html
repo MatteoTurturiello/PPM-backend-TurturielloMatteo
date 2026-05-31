@@ -2,6 +2,16 @@
 {% block content %}
 <h2>Feed notizie</h2>
 
+{% if unread_notifications %}
+    <h3>Notifiche</h3>
+    {% for notif in unread_notifications %}
+        <div class="card notification-card">
+            <p>{{ notif.message }}</p>
+            <a class="button" href="{% url 'social:dismiss-notification' notif.pk %}">Segna come letta</a>
+        </div>
+    {% endfor %}
+{% endif %}
+
 {% if pending_requests %}
     <h3>Richieste ricevute</h3>
     {% for req in pending_requests %}

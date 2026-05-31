@@ -9,9 +9,17 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import PostForm
-from .models import FriendRequest, Friendship, Post
+from .models import FriendRequest, Friendship, Notification, Post
 
 User = get_user_model()
+
+
+def _notify_post_deleted_by_moderator(post):
+    """Create an in-app notification for the post author when a moderator deletes their post."""
+    Notification.objects.create(
+        user_id=post.author_id,
+        message='Il tuo post è stato eliminato da un moderatore.',
+    )
 
 
 def friendship_filter_for(user):
@@ -29,6 +37,8 @@ class FeedView(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
+        if self.request.user.is_moderator():
+            return Post.objects.select_related('author').all()
         friend_ids = User.objects.filter(friendship_filter_for(self.request.user)).values_list('id', flat=True)
         visible_ids = list(friend_ids) + [self.request.user.id]
         return Post.objects.select_related('author').filter(author_id__in=visible_ids)
@@ -39,6 +49,9 @@ class FeedView(LoginRequiredMixin, ListView):
             to_user=self.request.user,
             status=FriendRequest.Status.PENDING,
         ).select_related('from_user')
+        context['unread_notifications'] = Notification.objects.filter(
+            user=self.request.user, read=False
+        )
         return context
 
 
@@ -52,7 +65,11 @@ class ProfilePostsView(LoginRequiredMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         self.profile_owner = get_object_or_404(User, pk=kwargs['pk'])
-        if request.user.pk != self.profile_owner.pk and not is_friend(request.user, self.profile_owner):
+        if (
+            request.user.pk != self.profile_owner.pk
+            and not is_friend(request.user, self.profile_owner)
+            and not request.user.is_moderator()
+        ):
             messages.error(request, 'Puoi vedere i post di un utente solo se siete amici.')
             return redirect('social:feed')
         return super().dispatch(request, *args, **kwargs)
@@ -104,6 +121,9 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
+        post = self.get_object()
+        if request.user.pk != post.author_id:
+            _notify_post_deleted_by_moderator(post)
         messages.success(self.request, 'Post eliminato.')
         return super().delete(request, *args, **kwargs)
 
@@ -150,4 +170,12 @@ def respond_friend_request(request, pk, action):
         return redirect('social:feed')
 
     friend_request.save(update_fields=['status'])
+    return redirect('social:feed')
+
+
+@login_required
+def dismiss_notification(request, pk):
+    notification = get_object_or_404(Notification, pk=pk, user=request.user)
+    notification.read = True
+    notification.save(update_fields=['read'])
     return redirect('social:feed')

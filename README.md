@@ -72,24 +72,48 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 ## Online deployment link
 - https://ppm-backend-turturiellomatteo-production.up.railway.app/
 
-## Railway deployment (refined)
+## Railway deployment (step by step)
 
-### Start command
-The `railway.toml` file configures the start command automatically:
-```
-python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT
-```
+### 1) Crea account Railway
+- Vai su Railway e fai login con GitHub.
+- Autorizza Railway ad accedere al repository.
 
-### Required Railway variables
-Set these variables in the Railway project:
+### 2) Crea il progetto da GitHub
+- In Railway: **New Project** → **Deploy from GitHub Repo**.
+- Seleziona `PPM-backend-TurturielloMatteo`.
 
-- `DJANGO_SECRET_KEY`: chiave segreta Django (obbligatoria in produzione).
-- `DJANGO_DEBUG`: `False` in produzione.
-- `DJANGO_ALLOWED_HOSTS`: host separati da virgola, ad esempio:
+### 3) Configura le variabili ambiente
+Apri il servizio su Railway → tab **Variables** e imposta:
+
+- `DJANGO_SECRET_KEY`: chiave segreta lunga e casuale.
+- `DJANGO_DEBUG`: `False`.
+- `DJANGO_ALLOWED_HOSTS`: il dominio pubblico Railway (separati da virgola se più host), ad esempio:
   `ppm-backend-turturiellomatteo-production.up.railway.app`.
-- `DJANGO_CSRF_TRUSTED_ORIGINS`: URL completi separati da virgola, ad esempio:
+- `DJANGO_CSRF_TRUSTED_ORIGINS`: URL completi (con `https://`), ad esempio:
   `https://ppm-backend-turturiellomatteo-production.up.railway.app`.
-- `RAILWAY_PUBLIC_DOMAIN`: dominio pubblico Railway (opzionale, aggiunto automaticamente agli host consentiti).
+- `RAILWAY_PUBLIC_DOMAIN`: opzionale, Railway lo valorizza automaticamente e il progetto lo aggiunge ad `ALLOWED_HOSTS`.
+
+### 4) Build e deploy
+- Non serve lanciare build manuale: Railway effettua build e deploy ad ogni push su GitHub.
+- Il file `railway.toml` contiene già il comando di avvio:
+  ```
+  python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT
+  ```
+
+### 5) Verifica dominio pubblico
+- In Railway apri **Settings/Networking** e copia il dominio pubblico assegnato.
+- Usa esattamente quel dominio nelle variabili `DJANGO_ALLOWED_HOSTS` e `DJANGO_CSRF_TRUSTED_ORIGINS`.
+
+### 6) Se il browser mostra `Not Found`
+Controlla in ordine:
+1. Dominio corretto e collegato al servizio giusto.
+2. Ultimo deploy completato senza errori (tab **Deployments/Logs**).
+3. Variabili impostate correttamente (`DJANGO_ALLOWED_HOSTS`, `DJANGO_CSRF_TRUSTED_ORIGINS`, `DJANGO_DEBUG=False`).
+4. Ri-deploy dopo modifica variabili.
+
+### 7) Test finale
+- Apri `https://<tuo-dominio-railway>/` oppure `https://<tuo-dominio-railway>/accounts/login/`.
+- Se risponde, il deploy è attivo e i push successivi aggiorneranno automaticamente il servizio.
 
 ### Production behavior enabled in settings
 When `DJANGO_DEBUG=False`, the app automatically enables:

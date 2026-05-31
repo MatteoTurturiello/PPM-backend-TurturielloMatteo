@@ -74,6 +74,12 @@ Applicazione social network con profili utente, post, richieste di amicizia, fee
 
 ## Railway deployment (refined)
 
+### Start command
+The `railway.toml` file configures the start command automatically:
+```
+python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT
+```
+
 ### Required Railway variables
 Set these variables in the Railway project:
 
@@ -89,7 +95,8 @@ Set these variables in the Railway project:
 When `DJANGO_DEBUG=False`, the app automatically enables:
 - forced redirect to HTTPS,
 - secure `session` and `csrf` cookies,
-- correct handling of Railway HTTPS proxy headers (`X-Forwarded-Proto`).
+- correct handling of Railway HTTPS proxy headers (`X-Forwarded-Proto`),
+- static files served via WhiteNoise (no separate static file server needed).
 
 ### Real online URL check
 To verify that the site is online from your machine:

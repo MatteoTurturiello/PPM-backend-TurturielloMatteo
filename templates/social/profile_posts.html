@@ -2,12 +2,12 @@
 {% block content %}
 <section class="page-intro page-intro--split">
     <div>
-        <p class="eyebrow">Profilo</p>
+        <p class="eyebrow" data-i18n-key="profileEyebrow">Profilo</p>
         <h1>{{ page_title }}</h1>
-        <p class="section-copy">Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.</p>
+        <p class="section-copy" data-i18n-key="profilePostsDescription">Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.</p>
     </div>
     {% if user.pk == profile_owner.pk %}
-        <a class="pill-link" href="{% url 'social:post-create' %}">Nuovo post</a>
+        <a class="pill-link" href="{% url 'social:post-create' %}" data-i18n-key="newPostAction">Nuovo post</a>
     {% endif %}
 </section>
 
@@ -16,7 +16,7 @@
         {% include 'social/_post_card.html' %}
     {% empty %}
         <div class="empty-state">
-            <p>Nessun post pubblicato.</p>
+            <p data-i18n-key="noPostsPublished">Nessun post pubblicato.</p>
         </div>
     {% endfor %}
 </div>

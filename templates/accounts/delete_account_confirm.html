@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-intro">
+    <div>
+        <p class="eyebrow" data-i18n-key="deleteAccountTitle">🗑️ Elimina account</p>
+        <h1 data-i18n-key="deleteAccountConfirmTitle">Conferma eliminazione</h1>
+        <p class="section-copy" data-i18n-key="deleteAccountDescription">Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.</p>
+    </div>
+</section>
+
+<div class="editor-card">
+    <form method="post">
+        {% csrf_token %}
+        <div class="action-row">
+            <button class="pill-link pill-link--danger" type="submit" data-i18n-key="deleteAccountAction">Elimina il mio account</button>
+            <a class="text-button" href="{% url 'social:feed' %}" data-i18n-key="cancelAction">Annulla</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -21,7 +21,7 @@
                     </a>
                 </div>
                 <div class="site-header__side site-header__side--right">
-                    <a class="nav-text-link {% if request.resolver_match.url_name == 'profile-posts' and request.user.pk == user.pk %}is-active{% endif %}" href="{% url 'social:profile-posts' user.pk %}">I miei post</a>
+                    <a class="nav-text-link {% if request.resolver_match.url_name == 'profile-posts' and request.user.pk == user.pk %}is-active{% endif %}" href="{% url 'social:profile-posts' user.pk %}" data-i18n-key="myPostsNavLabel">I miei post</a>
                 </div>
             </div>
         </header>
@@ -38,9 +38,14 @@
                     {% endfor %}
                     <div class="shell-panel__section-title" data-i18n-key="languageSectionTitle">🌐 Lingua</div>
                     <button class="text-button shell-panel__language-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
+                    {% if not user.is_superuser %}
+                    <div class="shell-panel__section-title" data-i18n-key="deleteAccountTitle">🗑️ Elimina account</div>
+                    <p class="shell-panel__empty shell-panel__empty--small" data-i18n-key="deleteAccountDescription">Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.</p>
+                    <a class="text-button text-button--danger" href="{% url 'accounts:delete-account' %}" data-i18n-key="deleteAccountAction">Elimina il mio account</a>
+                    {% endif %}
                     <form method="post" action="{% url 'logout' %}" class="shell-panel__link">
                         {% csrf_token %}
-                        <button class="text-button text-button--danger" type="submit">🚪 Logout</button>
+                        <button class="text-button text-button--danger" type="submit" data-i18n-key="logoutAction">🚪 Logout</button>
                     </form>
                 </div>
             </div>
@@ -58,7 +63,7 @@
                                     <a class="text-button" href="{{ conversation.url }}">{{ conversation.title }}</a>
                                     <form method="post" action="{{ conversation.deleteUrl }}">
                                         {% csrf_token %}
-                                        <button class="text-button text-button--danger" type="submit">Elimina</button>
+                                        <button class="text-button text-button--danger" type="submit" data-i18n-key="deleteAction">Elimina</button>
                                     </form>
                                 </div>
                                 <span class="helper-text">{{ conversation.subtitle }}</span>
@@ -66,10 +71,10 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        <p class="shell-panel__empty">Nessuna chat ancora disponibile.</p>
+                        <p class="shell-panel__empty" data-i18n-key="noChatMessage">Nessuna chat ancora disponibile.</p>
                     {% endif %}
                     {% if user.is_superuser and social_shell_data.contactMessages %}
-                        <div class="shell-panel__section-title">📩 Messaggi da utenti</div>
+                        <div class="shell-panel__section-title" data-i18n-key="adminMessagesTitle">📩 Messaggi da utenti</div>
                         {% for cm in social_shell_data.contactMessages %}
                             <div class="shell-panel__contact-msg">
                                 <span class="shell-panel__contact-sender">{{ cm.sender.username }}</span>
@@ -78,7 +83,7 @@
                             </div>
                         {% endfor %}
                     {% elif user.is_superuser %}
-                        <p class="shell-panel__empty">Nessun messaggio da utenti.</p>
+                        <p class="shell-panel__empty" data-i18n-key="noAdminMessages">Nessun messaggio da utenti.</p>
                     {% endif %}
                 </div>
             </div>

@@ -19,7 +19,38 @@ type TranslationKey =
   | 'translateAction'
   | 'translatingAction'
   | 'translationError'
-  | 'languageName';
+  | 'languageName'
+  | 'feedEyebrow'
+  | 'feedDescription'
+  | 'notificationsTitle'
+  | 'markAsReadAction'
+  | 'pendingRequestsTitle'
+  | 'wantsToConnect'
+  | 'acceptAction'
+  | 'rejectAction'
+  | 'recentPostsTitle'
+  | 'noPostsMessage'
+  | 'createFirstPostAction'
+  | 'editAction'
+  | 'deleteAction'
+  | 'noChatMessage'
+  | 'adminMessagesTitle'
+  | 'noAdminMessages'
+  | 'myPostsNavLabel'
+  | 'profileEyebrow'
+  | 'profilePostsDescription'
+  | 'noPostsPublished'
+  | 'newPostAction'
+  | 'editProfileAction'
+  | 'viewPostsPageAction'
+  | 'startChatAction'
+  | 'noBioMessage'
+  | 'logoutAction'
+  | 'cancelAction'
+  | 'deleteAccountTitle'
+  | 'deleteAccountDescription'
+  | 'deleteAccountAction'
+  | 'deleteAccountConfirmTitle';
 
 const PANELS = ['settings', 'messages'] as const;
 const LANGUAGE_STORAGE_KEY = 'ppm-language';
@@ -43,6 +74,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: 'Traduzione...',
     translationError: 'Traduzione non disponibile al momento.',
     languageName: 'Italiano',
+    feedEyebrow: 'Feed',
+    feedDescription: 'Scorri i contenuti dei tuoi amici, lascia un like e condividi foto leggere con emoji.',
+    notificationsTitle: 'Notifiche',
+    markAsReadAction: 'Segna come letta',
+    pendingRequestsTitle: 'Richieste ricevute',
+    wantsToConnect: 'vuole collegarsi con te.',
+    acceptAction: 'Accetta',
+    rejectAction: 'Rifiuta',
+    recentPostsTitle: 'Post recenti',
+    noPostsMessage: 'Nessun post da mostrare nel feed.',
+    createFirstPostAction: 'Crea il primo post',
+    editAction: 'Modifica',
+    deleteAction: 'Elimina',
+    noChatMessage: 'Nessuna chat ancora disponibile.',
+    adminMessagesTitle: '📩 Messaggi da utenti',
+    noAdminMessages: 'Nessun messaggio da utenti.',
+    myPostsNavLabel: 'I miei post',
+    profileEyebrow: 'Profilo',
+    profilePostsDescription: 'Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.',
+    noPostsPublished: 'Nessun post pubblicato.',
+    newPostAction: 'Nuovo post',
+    editProfileAction: 'Modifica profilo',
+    viewPostsPageAction: 'Vedi pagina post',
+    startChatAction: '💬 Avvia chat',
+    noBioMessage: 'Nessuna bio impostata.',
+    logoutAction: '🚪 Logout',
+    cancelAction: 'Annulla',
+    deleteAccountTitle: '🗑️ Elimina account',
+    deleteAccountDescription: 'Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.',
+    deleteAccountAction: 'Elimina il mio account',
+    deleteAccountConfirmTitle: 'Conferma eliminazione',
   },
   en: {
     settingsTitle: '⚙️ Settings',
@@ -61,6 +123,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: 'Translating...',
     translationError: 'Translation is unavailable right now.',
     languageName: 'English',
+    feedEyebrow: 'Feed',
+    feedDescription: 'Browse your friends\u2019 content, leave a like and share light photos with emojis.',
+    notificationsTitle: 'Notifications',
+    markAsReadAction: 'Mark as read',
+    pendingRequestsTitle: 'Pending requests',
+    wantsToConnect: 'wants to connect with you.',
+    acceptAction: 'Accept',
+    rejectAction: 'Reject',
+    recentPostsTitle: 'Recent posts',
+    noPostsMessage: 'No posts to show in the feed.',
+    createFirstPostAction: 'Create the first post',
+    editAction: 'Edit',
+    deleteAction: 'Delete',
+    noChatMessage: 'No chats available yet.',
+    adminMessagesTitle: '📩 User messages',
+    noAdminMessages: 'No messages from users.',
+    myPostsNavLabel: 'My posts',
+    profileEyebrow: 'Profile',
+    profilePostsDescription: 'Here you find all posts published from most recent to oldest.',
+    noPostsPublished: 'No posts published.',
+    newPostAction: 'New post',
+    editProfileAction: 'Edit profile',
+    viewPostsPageAction: 'View posts page',
+    startChatAction: '💬 Start chat',
+    noBioMessage: 'No bio set.',
+    logoutAction: '🚪 Logout',
+    cancelAction: 'Cancel',
+    deleteAccountTitle: '🗑️ Delete account',
+    deleteAccountDescription: 'This action is irreversible. All your data will be deleted.',
+    deleteAccountAction: 'Delete my account',
+    deleteAccountConfirmTitle: 'Confirm deletion',
   },
   es: {
     settingsTitle: '⚙️ Configuración',
@@ -79,6 +172,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: 'Traduciendo...',
     translationError: 'La traducción no está disponible ahora.',
     languageName: 'Español',
+    feedEyebrow: 'Feed',
+    feedDescription: 'Explora el contenido de tus amigos, deja un me gusta y comparte fotos con emojis.',
+    notificationsTitle: 'Notificaciones',
+    markAsReadAction: 'Marcar como leída',
+    pendingRequestsTitle: 'Solicitudes recibidas',
+    wantsToConnect: 'quiere conectarse contigo.',
+    acceptAction: 'Aceptar',
+    rejectAction: 'Rechazar',
+    recentPostsTitle: 'Publicaciones recientes',
+    noPostsMessage: 'No hay publicaciones para mostrar en el feed.',
+    createFirstPostAction: 'Crear la primera publicación',
+    editAction: 'Editar',
+    deleteAction: 'Eliminar',
+    noChatMessage: 'Aún no hay chats disponibles.',
+    adminMessagesTitle: '📩 Mensajes de usuarios',
+    noAdminMessages: 'No hay mensajes de usuarios.',
+    myPostsNavLabel: 'Mis publicaciones',
+    profileEyebrow: 'Perfil',
+    profilePostsDescription: 'Aquí encuentras todas las publicaciones del más reciente al más antiguo.',
+    noPostsPublished: 'No hay publicaciones.',
+    newPostAction: 'Nueva publicación',
+    editProfileAction: 'Editar perfil',
+    viewPostsPageAction: 'Ver publicaciones',
+    startChatAction: '💬 Iniciar chat',
+    noBioMessage: 'Sin biografía.',
+    logoutAction: '🚪 Cerrar sesión',
+    cancelAction: 'Cancelar',
+    deleteAccountTitle: '🗑️ Eliminar cuenta',
+    deleteAccountDescription: 'Esta acción es irreversible. Todos tus datos serán eliminados.',
+    deleteAccountAction: 'Eliminar mi cuenta',
+    deleteAccountConfirmTitle: 'Confirmar eliminación',
   },
   fr: {
     settingsTitle: '⚙️ Paramètres',
@@ -97,6 +221,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: 'Traduction...',
     translationError: 'Traduction indisponible pour le moment.',
     languageName: 'Français',
+    feedEyebrow: 'Fil',
+    feedDescription: 'Parcourez le contenu de vos amis, laissez un like et partagez des photos avec des emojis.',
+    notificationsTitle: 'Notifications',
+    markAsReadAction: 'Marquer comme lu',
+    pendingRequestsTitle: 'Demandes reçues',
+    wantsToConnect: 'veut se connecter avec vous.',
+    acceptAction: 'Accepter',
+    rejectAction: 'Refuser',
+    recentPostsTitle: 'Publications récentes',
+    noPostsMessage: 'Aucune publication à afficher dans le fil.',
+    createFirstPostAction: 'Créer la première publication',
+    editAction: 'Modifier',
+    deleteAction: 'Supprimer',
+    noChatMessage: "Aucune discussion disponible pour l'instant.",
+    adminMessagesTitle: '📩 Messages des utilisateurs',
+    noAdminMessages: 'Aucun message des utilisateurs.',
+    myPostsNavLabel: 'Mes publications',
+    profileEyebrow: 'Profil',
+    profilePostsDescription: 'Ici vous trouvez toutes les publications du plus récent au plus ancien.',
+    noPostsPublished: 'Aucune publication.',
+    newPostAction: 'Nouvelle publication',
+    editProfileAction: 'Modifier le profil',
+    viewPostsPageAction: 'Voir les publications',
+    startChatAction: '💬 Démarrer le chat',
+    noBioMessage: 'Aucune bio définie.',
+    logoutAction: '🚪 Déconnexion',
+    cancelAction: 'Annuler',
+    deleteAccountTitle: '🗑️ Supprimer le compte',
+    deleteAccountDescription: 'Cette action est irréversible. Toutes vos données seront supprimées.',
+    deleteAccountAction: 'Supprimer mon compte',
+    deleteAccountConfirmTitle: 'Confirmer la suppression',
   },
   de: {
     settingsTitle: '⚙️ Einstellungen',
@@ -115,6 +270,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: 'Übersetzung...',
     translationError: 'Übersetzung momentan nicht verfügbar.',
     languageName: 'Deutsch',
+    feedEyebrow: 'Feed',
+    feedDescription: 'Durchsuche den Inhalt deiner Freunde, hinterlasse ein Like und teile Fotos mit Emojis.',
+    notificationsTitle: 'Benachrichtigungen',
+    markAsReadAction: 'Als gelesen markieren',
+    pendingRequestsTitle: 'Erhaltene Anfragen',
+    wantsToConnect: 'möchte sich mit dir verbinden.',
+    acceptAction: 'Annehmen',
+    rejectAction: 'Ablehnen',
+    recentPostsTitle: 'Neueste Beiträge',
+    noPostsMessage: 'Keine Beiträge im Feed anzuzeigen.',
+    createFirstPostAction: 'Ersten Beitrag erstellen',
+    editAction: 'Bearbeiten',
+    deleteAction: 'Löschen',
+    noChatMessage: 'Noch keine Chats verfügbar.',
+    adminMessagesTitle: '📩 Nachrichten von Nutzern',
+    noAdminMessages: 'Keine Nachrichten von Nutzern.',
+    myPostsNavLabel: 'Meine Beiträge',
+    profileEyebrow: 'Profil',
+    profilePostsDescription: 'Hier findest du alle Beiträge vom neuesten zum ältesten.',
+    noPostsPublished: 'Keine Beiträge veröffentlicht.',
+    newPostAction: 'Neuer Beitrag',
+    editProfileAction: 'Profil bearbeiten',
+    viewPostsPageAction: 'Beitragsseite ansehen',
+    startChatAction: '💬 Chat starten',
+    noBioMessage: 'Keine Bio eingestellt.',
+    logoutAction: '🚪 Abmelden',
+    cancelAction: 'Abbrechen',
+    deleteAccountTitle: '🗑️ Konto löschen',
+    deleteAccountDescription: 'Diese Aktion ist unumkehrbar. Alle deine Daten werden gelöscht.',
+    deleteAccountAction: 'Mein Konto löschen',
+    deleteAccountConfirmTitle: 'Löschung bestätigen',
   },
   zh: {
     settingsTitle: '⚙️ 设置',
@@ -133,6 +319,37 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     translatingAction: '翻译中...',
     translationError: '当前无法翻译。',
     languageName: '中文',
+    feedEyebrow: '动态',
+    feedDescription: '浏览朋友的内容，点赞并分享带有表情的图片。',
+    notificationsTitle: '通知',
+    markAsReadAction: '标为已读',
+    pendingRequestsTitle: '收到的好友请求',
+    wantsToConnect: '想与您连接。',
+    acceptAction: '接受',
+    rejectAction: '拒绝',
+    recentPostsTitle: '最新帖子',
+    noPostsMessage: '动态中没有帖子可显示。',
+    createFirstPostAction: '创建第一篇帖子',
+    editAction: '编辑',
+    deleteAction: '删除',
+    noChatMessage: '暂无聊天记录。',
+    adminMessagesTitle: '📩 用户消息',
+    noAdminMessages: '没有用户消息。',
+    myPostsNavLabel: '我的帖子',
+    profileEyebrow: '个人资料',
+    profilePostsDescription: '在这里您可以找到从最新到最旧排序的所有帖子。',
+    noPostsPublished: '没有已发布的帖子。',
+    newPostAction: '新帖子',
+    editProfileAction: '编辑资料',
+    viewPostsPageAction: '查看帖子页面',
+    startChatAction: '💬 开始聊天',
+    noBioMessage: '未设置个人简介。',
+    logoutAction: '🚪 退出登录',
+    cancelAction: '取消',
+    deleteAccountTitle: '🗑️ 删除账户',
+    deleteAccountDescription: '此操作不可逆。您的所有数据将被删除。',
+    deleteAccountAction: '删除我的账户',
+    deleteAccountConfirmTitle: '确认删除',
   },
 };
 

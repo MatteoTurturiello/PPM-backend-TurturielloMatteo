@@ -9,9 +9,9 @@
         {% endif %}
     </div>
     <div class="profile-hero__content">
-        <p class="eyebrow">Profilo</p>
+        <p class="eyebrow" data-i18n-key="profileEyebrow">Profilo</p>
         <h1>{{ profile_user.username }}</h1>
-        <p class="section-copy">{{ profile_user.bio|default:'Nessuna bio impostata.' }}</p>
+        <p class="section-copy">{% if profile_user.bio %}{{ profile_user.bio }}{% else %}<span data-i18n-key="noBioMessage">Nessuna bio impostata.</span>{% endif %}</p>
         <div class="profile-meta">
             <span><strong>Ruolo:</strong> {{ profile_user.get_role_display }}</span>
             <span><strong>Nome:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</span>
@@ -19,11 +19,11 @@
         </div>
         <div class="action-row">
             {% if user.pk == profile_user.pk %}
-                <a class="pill-link" href="{% url 'accounts:profile-edit' user.pk %}">Modifica profilo</a>
+                <a class="pill-link" href="{% url 'accounts:profile-edit' user.pk %}" data-i18n-key="editProfileAction">Modifica profilo</a>
             {% endif %}
-            <a class="text-button" href="{% url 'social:profile-posts' profile_user.pk %}">Vedi pagina post</a>
+            <a class="text-button" href="{% url 'social:profile-posts' profile_user.pk %}" data-i18n-key="viewPostsPageAction">Vedi pagina post</a>
             {% if can_start_chat %}
-                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}">💬 Avvia chat</a>
+                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}" data-i18n-key="startChatAction">💬 Avvia chat</a>
             {% endif %}
         </div>
     </div>

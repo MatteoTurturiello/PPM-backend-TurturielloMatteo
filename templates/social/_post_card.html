@@ -28,15 +28,15 @@
                 {% if post.pk in liked_post_ids %}♥ Ti piace{% else %}♡ Mi piace{% endif %}
             </button>
             <span class="post-card__likes" data-likes-count="{{ post.liked_by.count }}">{{ post.liked_by.count }} like</span>
-            <button class="text-button text-button--translate" type="button" data-post-translate data-i18n-key="translateAction">Traduci (in Italiano)</button>
+            <button class="text-button text-button--translate" type="button" data-post-translate>Traduci (Italiano)</button>
         </form>
 
         <div class="post-card__owner-actions">
             {% if user.pk == post.author.pk %}
-                <a class="text-button" href="{% url 'social:post-update' post.pk %}">Modifica</a>
+                <a class="text-button" href="{% url 'social:post-update' post.pk %}" data-i18n-key="editAction">Modifica</a>
             {% endif %}
             {% if user.pk == post.author.pk or user.is_moderator %}
-                <a class="text-button text-button--danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
+                <a class="text-button text-button--danger" href="{% url 'social:post-delete' post.pk %}" data-i18n-key="deleteAction">Elimina</a>
             {% endif %}
         </div>
     </div>

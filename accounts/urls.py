@@ -6,6 +6,7 @@ from .views import (
     ProfileUpdateView,
     SignUpView,
     UserListView,
+    delete_account,
     home_redirect,
     toggle_user_status,
 )
@@ -19,5 +20,6 @@ urlpatterns = [
     path('moderation/users/<int:pk>/toggle/', toggle_user_status, name='toggle-user-status'),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
     path('profile/<int:pk>/edit/', ProfileUpdateView.as_view(), name='profile-edit'),
+    path('account/delete/', delete_account, name='delete-account'),
     path('', home_redirect, name='home'),
 ]

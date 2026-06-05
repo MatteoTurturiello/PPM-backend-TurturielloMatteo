@@ -2,22 +2,22 @@
 {% block content %}
 <section class="page-intro">
     <div>
-        <p class="eyebrow">Feed</p>
+        <p class="eyebrow" data-i18n-key="feedEyebrow">Feed</p>
         <h1>{{ page_title }}</h1>
-        <p class="section-copy">Scorri i contenuti dei tuoi amici, lascia un like e condividi foto leggere con emoji.</p>
+        <p class="section-copy" data-i18n-key="feedDescription">Scorri i contenuti dei tuoi amici, lascia un like e condividi foto leggere con emoji.</p>
     </div>
 </section>
 
 {% if unread_notifications %}
     <section class="stack-section">
         <div class="section-heading">
-            <h2>Notifiche</h2>
+            <h2 data-i18n-key="notificationsTitle">Notifiche</h2>
         </div>
         <div class="stack-grid">
             {% for notif in unread_notifications %}
                 <article class="info-card info-card--notification">
                     <p>{{ notif.message }}</p>
-                    <a class="text-button" href="{% url 'social:dismiss-notification' notif.pk %}">Segna come letta</a>
+                    <a class="text-button" href="{% url 'social:dismiss-notification' notif.pk %}" data-i18n-key="markAsReadAction">Segna come letta</a>
                 </article>
             {% endfor %}
         </div>
@@ -27,15 +27,15 @@
 {% if pending_requests %}
     <section class="stack-section">
         <div class="section-heading">
-            <h2>Richieste ricevute</h2>
+            <h2 data-i18n-key="pendingRequestsTitle">Richieste ricevute</h2>
         </div>
         <div class="stack-grid">
             {% for req in pending_requests %}
                 <article class="info-card">
-                    <p><strong>{{ req.from_user.username }}</strong> vuole collegarsi con te.</p>
+                    <p><strong>{{ req.from_user.username }}</strong> <span data-i18n-key="wantsToConnect">vuole collegarsi con te.</span></p>
                     <div class="action-row">
-                        <a class="text-button" href="{% url 'social:respond-friend-request' req.pk 'accept' %}">Accetta</a>
-                        <a class="text-button text-button--danger" href="{% url 'social:respond-friend-request' req.pk 'reject' %}">Rifiuta</a>
+                        <a class="text-button" href="{% url 'social:respond-friend-request' req.pk 'accept' %}" data-i18n-key="acceptAction">Accetta</a>
+                        <a class="text-button text-button--danger" href="{% url 'social:respond-friend-request' req.pk 'reject' %}" data-i18n-key="rejectAction">Rifiuta</a>
                     </div>
                 </article>
             {% endfor %}
@@ -45,15 +45,15 @@
 
 <section class="stack-section">
     <div class="section-heading">
-        <h2>Post recenti</h2>
+        <h2 data-i18n-key="recentPostsTitle">Post recenti</h2>
     </div>
     <div class="feed-stack">
         {% for post in posts %}
             {% include 'social/_post_card.html' %}
         {% empty %}
             <div class="empty-state">
-                <p>Nessun post da mostrare nel feed.</p>
-                <a class="pill-link" href="{% url 'social:post-create' %}">Crea il primo post</a>
+                <p data-i18n-key="noPostsMessage">Nessun post da mostrare nel feed.</p>
+                <a class="pill-link" href="{% url 'social:post-create' %}" data-i18n-key="createFirstPostAction">Crea il primo post</a>
             </div>
         {% endfor %}
     </div>

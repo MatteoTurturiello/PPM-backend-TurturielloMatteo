@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -96,3 +96,19 @@ def home_redirect(request):
     if request.user.is_authenticated:
         return redirect('social:feed')
     return render(request, 'accounts/home.html')
+
+
+@login_required
+def delete_account(request):
+    if request.user.is_superuser:
+        messages.error(request, 'Gli amministratori non possono eliminare il proprio account.')
+        return redirect('social:feed')
+
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+        user.delete()
+        messages.success(request, 'Il tuo account è stato eliminato con successo.')
+        return redirect('accounts:home')
+
+    return render(request, 'accounts/delete_account_confirm.html')

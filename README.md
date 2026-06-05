@@ -11,7 +11,7 @@ Full-Stack Web Application
 - Frontend UI shell: React + TypeScript bundled with esbuild
 
 ## Short description
-Social network minimale in stile Instagram con feed, profili, richieste di amicizia, like, chat dirette, supporto immagini leggere e interfaccia rinnovata.
+Social network con feed, profili, richieste di amicizia, like, chat dirette, supporto immagini leggere e interfaccia rinnovata.
 
 ## Main features
 

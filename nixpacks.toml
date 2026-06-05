@@ -2,10 +2,15 @@
 nixPkgs = ["python311", "nodejs_18"]
 
 [phases.install]
-cmds = ["python3 -m ensurepip --upgrade", "python3 -m pip install -r requirements.txt", "npm ci"]
+cmds = [
+  "python3 -m venv /opt/venv",
+  "/opt/venv/bin/pip install --upgrade pip",
+  "/opt/venv/bin/pip install -r requirements.txt",
+  "npm ci"
+]
 
 [phases.build]
 cmds = ["npm run build:frontend"]
 
 [start]
-cmd = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT"
+cmd = "/opt/venv/bin/python manage.py migrate && /opt/venv/bin/python manage.py collectstatic --noinput && /opt/venv/bin/gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT"

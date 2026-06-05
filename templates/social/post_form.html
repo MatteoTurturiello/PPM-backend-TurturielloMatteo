@@ -4,8 +4,13 @@
 <section class="page-intro">
     <div>
         <p class="eyebrow">Creator</p>
-        <h1>{{ page_title }}</h1>
-        <p class="section-copy">Aggiungi testo, emoji e una foto al tuo post.</p>
+        {% if not object %}
+            <h1 data-i18n-key="newPostAction">{{ page_title }}</h1>
+            <p class="section-copy" data-i18n-key="newPostDescription">Aggiungi testo, emoji e una foto al tuo post.</p>
+        {% else %}
+            <h1>{{ page_title }}</h1>
+            <p class="section-copy">Aggiungi testo, emoji e una foto al tuo post.</p>
+        {% endif %}
     </div>
 </section>
 
@@ -15,12 +20,12 @@
         <div class="form-errors">{{ form.non_field_errors }}</div>
     {% endif %}
 
-    <label class="form-label" for="{{ form.content.id_for_label }}">Testo del post</label>
+    <label class="form-label" for="{{ form.content.id_for_label }}" data-i18n-key="postTextLabel">Testo del post</label>
     {{ form.content }}
     {% if form.content.errors %}<div class="form-errors">{{ form.content.errors }}</div>{% endif %}
 
     <div class="emoji-picker">
-        <span class="emoji-picker__label">Emoji rapide</span>
+        <span class="emoji-picker__label" data-i18n-key="quickEmojisLabel">Emoji rapide</span>
         <div class="emoji-picker__actions">
             <button type="button" class="emoji-button" data-emoji="😊">😊</button>
             <button type="button" class="emoji-button" data-emoji="🔥">🔥</button>
@@ -30,15 +35,15 @@
         </div>
     </div>
 
-    <label class="form-label" for="{{ form.image.id_for_label }}">Foto del post</label>
+    <label class="form-label" for="{{ form.image.id_for_label }}" data-i18n-key="postPhotoLabel">Foto del post</label>
     {{ form.image }}
     <p class="helper-text">Massimo 450 KB e 1600x1600 px.</p>
-    <p class="helper-text" data-selected-file>Nessun file selezionato.</p>
+    <p class="helper-text" data-selected-file data-i18n-key="noFileSelected">Nessun file selezionato.</p>
     {% if form.image.errors %}<div class="form-errors">{{ form.image.errors }}</div>{% endif %}
 
     <div class="action-row">
-        <button class="pill-link pill-link--solid" type="submit">Salva post</button>
-        <a class="text-button" href="{% url 'social:feed' %}">Annulla</a>
+        <button class="pill-link pill-link--solid" type="submit" data-i18n-key="savePostAction">Salva post</button>
+        <a class="text-button" href="{% url 'social:feed' %}" data-i18n-key="cancelAction">Annulla</a>
     </div>
 </form>
 {% endblock %}

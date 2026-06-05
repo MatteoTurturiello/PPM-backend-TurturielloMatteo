@@ -3,7 +3,11 @@
 <section class="page-intro page-intro--split">
     <div>
         <p class="eyebrow" data-i18n-key="profileEyebrow">Profilo</p>
-        <h1>{{ page_title }}</h1>
+        {% if user.pk == profile_owner.pk %}
+            <h1 data-i18n-key="myPostsNavLabel">{{ page_title }}</h1>
+        {% else %}
+            <h1>{{ page_title }}</h1>
+        {% endif %}
         <p class="section-copy" data-i18n-key="profilePostsDescription">Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.</p>
     </div>
     {% if user.pk == profile_owner.pk %}

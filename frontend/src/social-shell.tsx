@@ -50,7 +50,24 @@ type TranslationKey =
   | 'deleteAccountTitle'
   | 'deleteAccountDescription'
   | 'deleteAccountAction'
-  | 'deleteAccountConfirmTitle';
+  | 'deleteAccountConfirmTitle'
+  | 'myProfileLabel'
+  | 'discoverUsersLabel'
+  | 'usersLabel'
+  | 'newPostDescription'
+  | 'postTextLabel'
+  | 'postPhotoLabel'
+  | 'quickEmojisLabel'
+  | 'noFileSelected'
+  | 'savePostAction'
+  | 'settingsEyebrow'
+  | 'editProfileDescription'
+  | 'firstNameLabel'
+  | 'lastNameLabel'
+  | 'emailLabel'
+  | 'bioLabel'
+  | 'profilePhotoLabel'
+  | 'saveProfileAction';
 
 const PANELS = ['settings', 'messages'] as const;
 const LANGUAGE_STORAGE_KEY = 'ppm-language';
@@ -105,6 +122,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: 'Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.',
     deleteAccountAction: 'Elimina il mio account',
     deleteAccountConfirmTitle: 'Conferma eliminazione',
+    myProfileLabel: 'Il mio profilo',
+    discoverUsersLabel: 'Scopri utenti',
+    usersLabel: 'Utenti',
+    newPostDescription: 'Aggiungi testo, emoji e una foto al tuo post.',
+    postTextLabel: 'Testo del post',
+    postPhotoLabel: 'Foto del post',
+    quickEmojisLabel: 'Emoji rapide',
+    noFileSelected: 'Nessun file selezionato.',
+    savePostAction: 'Salva post',
+    settingsEyebrow: 'Impostazioni',
+    editProfileDescription: 'Aggiorna i tuoi dati e aggiungi una foto profilo leggera.',
+    firstNameLabel: 'Nome',
+    lastNameLabel: 'Cognome',
+    emailLabel: 'Email',
+    bioLabel: 'Bio',
+    profilePhotoLabel: 'Foto profilo',
+    saveProfileAction: 'Salva profilo',
   },
   en: {
     settingsTitle: '⚙️ Settings',
@@ -154,6 +188,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: 'This action is irreversible. All your data will be deleted.',
     deleteAccountAction: 'Delete my account',
     deleteAccountConfirmTitle: 'Confirm deletion',
+    myProfileLabel: 'My profile',
+    discoverUsersLabel: 'Discover users',
+    usersLabel: 'Users',
+    newPostDescription: 'Add text, emojis and a photo to your post.',
+    postTextLabel: 'Post text',
+    postPhotoLabel: 'Post photo',
+    quickEmojisLabel: 'Quick emojis',
+    noFileSelected: 'No file selected.',
+    savePostAction: 'Save post',
+    settingsEyebrow: 'Settings',
+    editProfileDescription: 'Update your info and add a lightweight profile photo.',
+    firstNameLabel: 'First name',
+    lastNameLabel: 'Last name',
+    emailLabel: 'Email',
+    bioLabel: 'Bio',
+    profilePhotoLabel: 'Profile photo',
+    saveProfileAction: 'Save profile',
   },
   es: {
     settingsTitle: '⚙️ Configuración',
@@ -203,6 +254,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: 'Esta acción es irreversible. Todos tus datos serán eliminados.',
     deleteAccountAction: 'Eliminar mi cuenta',
     deleteAccountConfirmTitle: 'Confirmar eliminación',
+    myProfileLabel: 'Mi perfil',
+    discoverUsersLabel: 'Descubrir usuarios',
+    usersLabel: 'Usuarios',
+    newPostDescription: 'Añade texto, emoji y una foto a tu publicación.',
+    postTextLabel: 'Texto de la publicación',
+    postPhotoLabel: 'Foto de la publicación',
+    quickEmojisLabel: 'Emojis rápidos',
+    noFileSelected: 'Ningún archivo seleccionado.',
+    savePostAction: 'Guardar publicación',
+    settingsEyebrow: 'Configuración',
+    editProfileDescription: 'Actualiza tus datos y añade una foto de perfil ligera.',
+    firstNameLabel: 'Nombre',
+    lastNameLabel: 'Apellido',
+    emailLabel: 'Correo electrónico',
+    bioLabel: 'Biografía',
+    profilePhotoLabel: 'Foto de perfil',
+    saveProfileAction: 'Guardar perfil',
   },
   fr: {
     settingsTitle: '⚙️ Paramètres',
@@ -252,6 +320,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: 'Cette action est irréversible. Toutes vos données seront supprimées.',
     deleteAccountAction: 'Supprimer mon compte',
     deleteAccountConfirmTitle: 'Confirmer la suppression',
+    myProfileLabel: 'Mon profil',
+    discoverUsersLabel: 'Découvrir des utilisateurs',
+    usersLabel: 'Utilisateurs',
+    newPostDescription: 'Ajoutez du texte, des emojis et une photo à votre publication.',
+    postTextLabel: 'Texte de la publication',
+    postPhotoLabel: 'Photo de la publication',
+    quickEmojisLabel: 'Emojis rapides',
+    noFileSelected: 'Aucun fichier sélectionné.',
+    savePostAction: 'Enregistrer la publication',
+    settingsEyebrow: 'Paramètres',
+    editProfileDescription: 'Mettez à jour vos informations et ajoutez une photo de profil légère.',
+    firstNameLabel: 'Prénom',
+    lastNameLabel: 'Nom',
+    emailLabel: 'Email',
+    bioLabel: 'Bio',
+    profilePhotoLabel: 'Photo de profil',
+    saveProfileAction: 'Enregistrer le profil',
   },
   de: {
     settingsTitle: '⚙️ Einstellungen',
@@ -301,6 +386,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: 'Diese Aktion ist unumkehrbar. Alle deine Daten werden gelöscht.',
     deleteAccountAction: 'Mein Konto löschen',
     deleteAccountConfirmTitle: 'Löschung bestätigen',
+    myProfileLabel: 'Mein Profil',
+    discoverUsersLabel: 'Nutzer entdecken',
+    usersLabel: 'Nutzer',
+    newPostDescription: 'Füge Text, Emojis und ein Foto zu deinem Beitrag hinzu.',
+    postTextLabel: 'Beitragstext',
+    postPhotoLabel: 'Beitragsfoto',
+    quickEmojisLabel: 'Schnelle Emojis',
+    noFileSelected: 'Keine Datei ausgewählt.',
+    savePostAction: 'Beitrag speichern',
+    settingsEyebrow: 'Einstellungen',
+    editProfileDescription: 'Aktualisiere deine Daten und füge ein leichtes Profilbild hinzu.',
+    firstNameLabel: 'Vorname',
+    lastNameLabel: 'Nachname',
+    emailLabel: 'E-Mail',
+    bioLabel: 'Biografie',
+    profilePhotoLabel: 'Profilbild',
+    saveProfileAction: 'Profil speichern',
   },
   zh: {
     settingsTitle: '⚙️ 设置',
@@ -350,6 +452,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     deleteAccountDescription: '此操作不可逆。您的所有数据将被删除。',
     deleteAccountAction: '删除我的账户',
     deleteAccountConfirmTitle: '确认删除',
+    myProfileLabel: '我的主页',
+    discoverUsersLabel: '发现用户',
+    usersLabel: '用户',
+    newPostDescription: '为你的帖子添加文字、表情和图片。',
+    postTextLabel: '帖子文字',
+    postPhotoLabel: '帖子图片',
+    quickEmojisLabel: '快捷表情',
+    noFileSelected: '未选择文件。',
+    savePostAction: '保存帖子',
+    settingsEyebrow: '设置',
+    editProfileDescription: '更新您的信息并添加一张轻量级头像。',
+    firstNameLabel: '名字',
+    lastNameLabel: '姓氏',
+    emailLabel: '邮箱',
+    bioLabel: '个人简介',
+    profilePhotoLabel: '头像',
+    saveProfileAction: '保存资料',
   },
 };
 

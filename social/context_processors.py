@@ -34,9 +34,9 @@ def social_shell(request):
         )
 
     settings_links = [
-        {'label': 'Il mio profilo', 'url': reverse('accounts:profile-detail', kwargs={'pk': request.user.pk})},
-        {'label': 'Modifica profilo', 'url': reverse('accounts:profile-edit', kwargs={'pk': request.user.pk})},
-        {'label': 'Scopri utenti', 'url': reverse('accounts:user-list')},
+        {'label': 'Il mio profilo', 'url': reverse('accounts:profile-detail', kwargs={'pk': request.user.pk}), 'i18nKey': 'myProfileLabel'},
+        {'label': 'Modifica profilo', 'url': reverse('accounts:profile-edit', kwargs={'pk': request.user.pk}), 'i18nKey': 'editProfileAction'},
+        {'label': 'Scopri utenti', 'url': reverse('accounts:user-list'), 'i18nKey': 'discoverUsersLabel'},
     ]
     if request.user.is_moderator():
         settings_links.append({'label': 'Moderazione account', 'url': reverse('accounts:moderation-users')})

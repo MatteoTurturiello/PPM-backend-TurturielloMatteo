@@ -40,7 +40,7 @@
                     <button class="text-button shell-panel__language-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
                     {% if not user.is_superuser %}
                     <div class="shell-panel__section-title" data-i18n-key="deleteAccountTitle">🗑️ Elimina account</div>
-                    <p class="shell-panel__empty" style="font-size:0.82rem" data-i18n-key="deleteAccountDescription">Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.</p>
+                    <p class="shell-panel__empty shell-panel__empty--small" data-i18n-key="deleteAccountDescription">Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.</p>
                     <a class="text-button text-button--danger" href="{% url 'accounts:delete-account' %}" data-i18n-key="deleteAccountAction">Elimina il mio account</a>
                     {% endif %}
                     <form method="post" action="{% url 'logout' %}" class="shell-panel__link">

@@ -643,6 +643,10 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
   margin-top: 0.25rem;
 }
 
+.shell-panel__empty--small {
+  font-size: 0.82rem;
+}
+
 .shell-panel__contact-msg {
   display: grid;
   gap: 0.2rem;

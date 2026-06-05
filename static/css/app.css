@@ -520,8 +520,8 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
 
 .shell-panel {
   position: fixed;
-  top: 8.8rem;
-  z-index: 25;
+  top: 10.6rem;
+  z-index: 40;
   width: min(280px, calc(100vw - 2rem));
 }
 
@@ -588,7 +588,7 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
   }
 
   .body--app {
-    padding-top: 8rem;
+    padding-top: 8.5rem;
   }
 }
 

@@ -1,5 +1,8 @@
 # PPM Social Network - Matteo Turturiello
 
+## Live Demo
+🔗 **[App su Railway](https://ppm-backend-turturiellomatteo-production.up.railway.app)** | [Railway Dashboard](https://railway.app/dashboard)
+
 ## Project type
 Full-Stack Web Application
 

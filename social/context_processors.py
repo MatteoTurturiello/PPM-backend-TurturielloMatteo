@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.urls import reverse
 
-from .models import Conversation
+from .models import ContactMessage, Conversation
 
 
 def social_shell(request):
@@ -41,11 +41,18 @@ def social_shell(request):
     if request.user.is_moderator():
         settings_links.append({'label': 'Moderazione account', 'url': reverse('accounts:moderation-users')})
 
+    contact_messages = []
+    if request.user.is_superuser:
+        contact_messages = list(
+            ContactMessage.objects.select_related('sender').order_by('-created_at')[:20]
+        )
+
     return {
         'social_shell_data': {
             'conversations': conversation_items,
             'settingsLinks': settings_links,
             'csrfToken': request.COOKIES.get('csrftoken', ''),
             'nextUrl': request.get_full_path(),
+            'contactMessages': contact_messages,
         }
     }

@@ -6,6 +6,7 @@ from .views import (
     PostDeleteView,
     PostUpdateView,
     ProfilePostsView,
+    contact_admin,
     conversation_detail,
     delete_conversation,
     dismiss_notification,
@@ -30,4 +31,5 @@ urlpatterns = [
     path('messages/start/<int:pk>/', start_conversation, name='conversation-start'),
     path('messages/<int:pk>/', conversation_detail, name='conversation-detail'),
     path('messages/<int:pk>/delete/', delete_conversation, name='conversation-delete'),
+    path('contact-admin/', contact_admin, name='contact-admin'),
 ]

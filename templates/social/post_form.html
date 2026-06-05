@@ -1,9 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h2>{% if object %}Modifica post{% else %}Nuovo post{% endif %}</h2>
-<form method="post">
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Creator</p>
+        <h1>{{ page_title }}</h1>
+        <p class="section-copy">Aggiungi testo, emoji e una foto leggera per mantenere il deploy compatto.</p>
+    </div>
+</section>
+
+<form method="post" enctype="multipart/form-data" class="editor-card" data-post-composer>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button" type="submit">Salva</button>
+    {% if form.non_field_errors %}
+        <div class="form-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <label class="form-label" for="{{ form.content.id_for_label }}">Testo del post</label>
+    {{ form.content }}
+    {% if form.content.errors %}<div class="form-errors">{{ form.content.errors }}</div>{% endif %}
+
+    <div class="emoji-picker">
+        <span class="emoji-picker__label">Emoji rapide</span>
+        <div class="emoji-picker__actions">
+            <button type="button" class="emoji-button" data-emoji="😊">😊</button>
+            <button type="button" class="emoji-button" data-emoji="🔥">🔥</button>
+            <button type="button" class="emoji-button" data-emoji="🎉">🎉</button>
+            <button type="button" class="emoji-button" data-emoji="❤️">❤️</button>
+            <button type="button" class="emoji-button" data-emoji="✨">✨</button>
+        </div>
+    </div>
+
+    <label class="form-label" for="{{ form.image.id_for_label }}">Foto del post</label>
+    {{ form.image }}
+    <p class="helper-text">Massimo 450 KB e 1600x1600 px.</p>
+    <p class="helper-text" data-selected-file>Nessun file selezionato.</p>
+    {% if form.image.errors %}<div class="form-errors">{{ form.image.errors }}</div>{% endif %}
+
+    <div class="action-row">
+        <button class="pill-link pill-link--solid" type="submit">Salva post</button>
+        <a class="text-button" href="{% url 'social:feed' %}">Annulla</a>
+    </div>
 </form>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/post-composer.js' %}" defer></script>
 {% endblock %}

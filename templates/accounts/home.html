@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>PPM Social Network</h1>
-<p>Accedi o registrati per iniziare.</p>
-<a class="button" href="{% url 'login' %}">Login</a>
-<a class="button" href="{% url 'accounts:signup' %}">Registrazione</a>
+<section class="hero-card">
+    <div class="hero-card__content">
+        <p class="eyebrow">Benvenuto</p>
+        <h1>Un social semplice, visivo e pronto da usare.</h1>
+        <p class="section-copy">Crea il tuo profilo, condividi post con emoji e foto leggere, segui il feed e chatta con i tuoi amici.</p>
+        <div class="action-row">
+            <a class="pill-link pill-link--solid" href="{% url 'login' %}">Accedi</a>
+            <a class="pill-link" href="{% url 'accounts:signup' %}">Registrati</a>
+        </div>
+    </div>
+    <div class="hero-card__aside">
+        <div class="mini-feature">
+            <span>📷</span>
+            <p>Foto post e profilo con limiti leggeri.</p>
+        </div>
+        <div class="mini-feature">
+            <span>❤️</span>
+            <p>Like veloci per rendere il feed più vivo.</p>
+        </div>
+        <div class="mini-feature">
+            <span>💬</span>
+            <p>Chat dirette e menu sticky sempre a portata di mano.</p>
+        </div>
+    </div>
+</section>
 {% endblock %}

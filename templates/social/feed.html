@@ -1,40 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Feed notizie</h2>
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Feed</p>
+        <h1>{{ page_title }}</h1>
+        <p class="section-copy">Scorri i contenuti dei tuoi amici, lascia un like e condividi foto leggere con emoji.</p>
+    </div>
+</section>
 
 {% if unread_notifications %}
-    <h3>Notifiche</h3>
-    {% for notif in unread_notifications %}
-        <div class="card notification-card">
-            <p>{{ notif.message }}</p>
-            <a class="button" href="{% url 'social:dismiss-notification' notif.pk %}">Segna come letta</a>
+    <section class="stack-section">
+        <div class="section-heading">
+            <h2>Notifiche</h2>
         </div>
-    {% endfor %}
+        <div class="stack-grid">
+            {% for notif in unread_notifications %}
+                <article class="info-card info-card--notification">
+                    <p>{{ notif.message }}</p>
+                    <a class="text-button" href="{% url 'social:dismiss-notification' notif.pk %}">Segna come letta</a>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
 {% endif %}
 
 {% if pending_requests %}
-    <h3>Richieste ricevute</h3>
-    {% for req in pending_requests %}
-        <div class="card">
-            <p>{{ req.from_user.username }} vuole collegarsi con te.</p>
-            <a class="button" href="{% url 'social:respond-friend-request' req.pk 'accept' %}">Accetta</a>
-            <a class="button button-danger" href="{% url 'social:respond-friend-request' req.pk 'reject' %}">Rifiuta</a>
+    <section class="stack-section">
+        <div class="section-heading">
+            <h2>Richieste ricevute</h2>
         </div>
-    {% endfor %}
+        <div class="stack-grid">
+            {% for req in pending_requests %}
+                <article class="info-card">
+                    <p><strong>{{ req.from_user.username }}</strong> vuole collegarsi con te.</p>
+                    <div class="action-row">
+                        <a class="text-button" href="{% url 'social:respond-friend-request' req.pk 'accept' %}">Accetta</a>
+                        <a class="text-button text-button--danger" href="{% url 'social:respond-friend-request' req.pk 'reject' %}">Rifiuta</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
 {% endif %}
 
-{% for post in posts %}
-<div class="card">
-    <p><strong>{{ post.author.username }}</strong> - {{ post.created_at|date:'d/m/Y H:i' }}</p>
-    <p>{{ post.content }}</p>
-    {% if user.pk == post.author.pk %}
-        <a class="button" href="{% url 'social:post-update' post.pk %}">Modifica</a>
-    {% endif %}
-    {% if user.pk == post.author.pk or user.is_moderator %}
-        <a class="button button-danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
-    {% endif %}
-</div>
-{% empty %}
-<p>Nessun post da mostrare nel feed.</p>
-{% endfor %}
+<section class="stack-section">
+    <div class="section-heading">
+        <h2>Post recenti</h2>
+    </div>
+    <div class="feed-stack">
+        {% for post in posts %}
+            {% include 'social/_post_card.html' %}
+        {% empty %}
+            <div class="empty-state">
+                <p>Nessun post da mostrare nel feed.</p>
+                <a class="pill-link" href="{% url 'social:post-create' %}">Crea il primo post</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

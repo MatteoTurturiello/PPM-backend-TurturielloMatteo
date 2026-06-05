@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Elimina post</h2>
-<p>Confermi l'eliminazione di questo post?</p>
-<p><em>{{ object.content }}</em></p>
-<form method="post">
-    {% csrf_token %}
-    <button class="button button-danger" type="submit">Conferma</button>
-</form>
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Eliminazione</p>
+        <h1>Elimina post</h1>
+        <p class="section-copy">Conferma l'azione solo se vuoi rimuovere definitivamente questo contenuto.</p>
+    </div>
+</section>
+
+<div class="editor-card">
+    <p class="post-card__text">{{ object.content }}</p>
+    {% if object.image %}
+        <img class="post-card__image" src="{{ object.image.url }}" alt="Immagine del post da eliminare">
+    {% endif %}
+    <form method="post" class="action-row action-row--spaced">
+        {% csrf_token %}
+        <button class="pill-link pill-link--danger" type="submit">Conferma</button>
+        <a class="text-button" href="{% url 'social:feed' %}">Torna al feed</a>
+    </form>
+</div>
 {% endblock %}

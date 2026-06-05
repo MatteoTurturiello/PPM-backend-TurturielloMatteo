@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Moderazione account</h2>
-{% for account in users %}
-<div class="card">
-    <p><strong>{{ account.username }}</strong> - {{ account.get_role_display }} -
-        {% if account.is_active %}Attivo{% else %}Disattivato{% endif %}
-    </p>
-    {% if account.pk != user.pk %}
-    <form method="post" action="{% url 'accounts:toggle-user-status' account.pk %}">
-        {% csrf_token %}
-        <button class="button button-danger" type="submit">
-            {% if account.is_active %}Disattiva{% else %}Riattiva{% endif %}
-        </button>
-    </form>
-    {% endif %}
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Moderazione</p>
+        <h1>Gestione account</h1>
+        <p class="section-copy">Controlla rapidamente lo stato degli utenti della piattaforma.</p>
+    </div>
+</section>
+
+<div class="stack-grid">
+    {% for account in users %}
+        <article class="info-card">
+            <p><strong>{{ account.username }}</strong></p>
+            <p>{{ account.get_role_display }} · {% if account.is_active %}Attivo{% else %}Disattivato{% endif %}</p>
+            {% if account.pk != user.pk %}
+                <form method="post" action="{% url 'accounts:toggle-user-status' account.pk %}">
+                    {% csrf_token %}
+                    <button class="text-button text-button--danger" type="submit">
+                        {% if account.is_active %}Disattiva{% else %}Riattiva{% endif %}
+                    </button>
+                </form>
+            {% endif %}
+        </article>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}

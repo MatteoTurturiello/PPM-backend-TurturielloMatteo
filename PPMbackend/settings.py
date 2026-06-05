@@ -5,14 +5,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 def csv_env(name, default=''):
-    """Parse CSV env var.
-
-    Args:
-        name (str): Environment variable name.
-        default (str): Fallback CSV string.
-    Returns:
-        list[str]: Trimmed non-empty values.
-    """
     return [item.strip() for item in os.getenv(name, default).split(',') if item.strip()]
 
 
@@ -24,7 +16,6 @@ RAILWAY_PUBLIC_DOMAIN = os.getenv('RAILWAY_PUBLIC_DOMAIN', '').strip()
 if RAILWAY_PUBLIC_DOMAIN and RAILWAY_PUBLIC_DOMAIN not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(RAILWAY_PUBLIC_DOMAIN)
 
-# Railway healthchecks use this hostname — must be in ALLOWED_HOSTS.
 if 'healthcheck.railway.app' not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append('healthcheck.railway.app')
 
@@ -64,6 +55,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.context_processors.social_shell',
             ],
         },
     },
@@ -93,14 +85,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'it-it'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
@@ -109,9 +105,8 @@ LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
 if not DEBUG:
-    # Safe on Railway because the platform terminates TLS and sets X-Forwarded-Proto.
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
-    SECURE_REDIRECT_EXEMPT = [r'^healthz/$']  # Allow HTTP healthcheck from Railway
+    SECURE_REDIRECT_EXEMPT = [r'^healthz/$']
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True

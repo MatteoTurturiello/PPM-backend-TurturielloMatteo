@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Registrazione</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button" type="submit">Crea account</button>
-</form>
+<section class="auth-card auth-card--wide">
+    <div class="auth-card__intro">
+        <p class="eyebrow">Nuovo account</p>
+        <h1>Crea il tuo profilo.</h1>
+        <p class="section-copy">Registrati per entrare nel feed, aggiungere amici, lasciare like e iniziare a chattare.</p>
+    </div>
+    <form method="post" class="auth-form auth-form--grid">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div>
+            <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username }}
+            {% if form.username.errors %}<div class="form-errors">{{ form.username.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div class="form-errors">{{ form.email.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.first_name.id_for_label }}">Nome</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}<div class="form-errors">{{ form.first_name.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.last_name.id_for_label }}">Cognome</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}<div class="form-errors">{{ form.last_name.errors }}</div>{% endif %}
+        </div>
+        <div class="auth-form__full">
+            <label class="form-label" for="{{ form.bio.id_for_label }}">Bio</label>
+            {{ form.bio }}
+            {% if form.bio.errors %}<div class="form-errors">{{ form.bio.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.password1.id_for_label }}">Password</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}<div class="form-errors">{{ form.password1.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.password2.id_for_label }}">Conferma password</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}<div class="form-errors">{{ form.password2.errors }}</div>{% endif %}
+        </div>
+
+        <div class="auth-form__full action-row action-row--spaced">
+            <button class="pill-link pill-link--solid auth-form__submit" type="submit">Crea account</button>
+            <p class="helper-text">Hai già un account? <a class="text-button" href="{% url 'login' %}">Accedi</a></p>
+        </div>
+    </form>
+</section>
 {% endblock %}

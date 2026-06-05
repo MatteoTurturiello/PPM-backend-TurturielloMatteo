@@ -1,0 +1,42 @@
+<article class="post-card">
+    <div class="post-card__header">
+        <a class="avatar avatar--small" href="{% url 'accounts:profile-detail' post.author.pk %}">
+            {% if post.author.profile_image %}
+                <img src="{{ post.author.profile_image.url }}" alt="Foto profilo di {{ post.author.username }}">
+            {% else %}
+                <span>{{ post.author.username|slice:':1'|upper }}</span>
+            {% endif %}
+        </a>
+        <div>
+            <a class="post-card__author" href="{% url 'accounts:profile-detail' post.author.pk %}">{{ post.author.username }}</a>
+            <p class="post-card__meta">{{ post.created_at|date:'d/m/Y H:i' }}</p>
+        </div>
+    </div>
+
+    <div class="post-card__body">
+        <p class="post-card__text">{{ post.content|linebreaksbr }}</p>
+        {% if post.image %}
+            <img class="post-card__image" src="{{ post.image.url }}" alt="Immagine del post di {{ post.author.username }}">
+        {% endif %}
+    </div>
+
+    <div class="post-card__actions">
+        <form method="post" action="{% url 'social:post-like' post.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <button class="text-button text-button--like" type="submit">
+                {% if post.pk in liked_post_ids %}♥ Ti piace{% else %}♡ Mi piace{% endif %}
+            </button>
+            <span class="post-card__likes">{{ post.liked_by.count }} like</span>
+        </form>
+
+        <div class="post-card__owner-actions">
+            {% if user.pk == post.author.pk %}
+                <a class="text-button" href="{% url 'social:post-update' post.pk %}">Modifica</a>
+            {% endif %}
+            {% if user.pk == post.author.pk or user.is_moderator %}
+                <a class="text-button text-button--danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
+            {% endif %}
+        </div>
+    </div>
+</article>

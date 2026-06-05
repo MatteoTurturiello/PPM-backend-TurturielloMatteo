@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Profilo di {{ profile_user.username }}</h2>
-<p><strong>Ruolo:</strong> {{ profile_user.get_role_display }}</p>
-<p><strong>Nome:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</p>
-<p><strong>Email:</strong> {{ profile_user.email }}</p>
-<p><strong>Bio:</strong> {{ profile_user.bio|default:'Nessuna bio' }}</p>
-{% if user.pk == profile_user.pk %}
-    <a class="button" href="{% url 'accounts:profile-edit' user.pk %}">Modifica profilo</a>
-{% endif %}
-<a class="button" href="{% url 'social:profile-posts' profile_user.pk %}">Vedi pagina post</a>
+<section class="profile-hero">
+    <div class="avatar avatar--large">
+        {% if profile_user.profile_image %}
+            <img src="{{ profile_user.profile_image.url }}" alt="Foto profilo di {{ profile_user.username }}">
+        {% else %}
+            <span>{{ profile_user.username|slice:':1'|upper }}</span>
+        {% endif %}
+    </div>
+    <div class="profile-hero__content">
+        <p class="eyebrow">Profilo</p>
+        <h1>{{ profile_user.username }}</h1>
+        <p class="section-copy">{{ profile_user.bio|default:'Nessuna bio impostata.' }}</p>
+        <div class="profile-meta">
+            <span><strong>Ruolo:</strong> {{ profile_user.get_role_display }}</span>
+            <span><strong>Nome:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</span>
+            <span><strong>Email:</strong> {{ profile_user.email|default:'Non disponibile' }}</span>
+        </div>
+        <div class="action-row">
+            {% if user.pk == profile_user.pk %}
+                <a class="pill-link" href="{% url 'accounts:profile-edit' user.pk %}">Modifica profilo</a>
+            {% endif %}
+            <a class="text-button" href="{% url 'social:profile-posts' profile_user.pk %}">Vedi pagina post</a>
+            {% if can_start_chat %}
+                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}">💬 Avvia chat</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
 {% endblock %}

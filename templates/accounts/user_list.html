@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Utenti disponibili</h2>
-{% for profile_user in users %}
-<div class="card">
-    <p><strong>{{ profile_user.username }}</strong> - {{ profile_user.get_role_display }}</p>
-    <a class="button" href="{% url 'accounts:profile-detail' profile_user.pk %}">Profilo</a>
-    <a class="button" href="{% url 'social:send-friend-request' profile_user.pk %}">Invia richiesta amicizia</a>
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Community</p>
+        <h1>Utenti disponibili</h1>
+        <p class="section-copy">Scopri profili, invia richieste di amicizia e apri nuove chat.</p>
+    </div>
+</section>
+
+<div class="people-grid">
+    {% for profile_user in users %}
+        <article class="person-card">
+            <div class="avatar avatar--medium">
+                {% if profile_user.profile_image %}
+                    <img src="{{ profile_user.profile_image.url }}" alt="Foto profilo di {{ profile_user.username }}">
+                {% else %}
+                    <span>{{ profile_user.username|slice:':1'|upper }}</span>
+                {% endif %}
+            </div>
+            <h2>{{ profile_user.username }}</h2>
+            <p>{{ profile_user.get_role_display }}</p>
+            <div class="action-row action-row--center">
+                <a class="text-button" href="{% url 'accounts:profile-detail' profile_user.pk %}">Profilo</a>
+                <a class="text-button" href="{% url 'social:send-friend-request' profile_user.pk %}">Aggiungi</a>
+                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}">Messaggio</a>
+            </div>
+        </article>
+    {% empty %}
+        <div class="empty-state">
+            <p>Nessun altro utente disponibile.</p>
+        </div>
+    {% endfor %}
 </div>
-{% empty %}
-<p>Nessun altro utente disponibile.</p>
-{% endfor %}
 {% endblock %}

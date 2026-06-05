@@ -1,54 +1,103 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPM Social Network</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f5f6f8; }
-        nav { background: #1f2937; color: white; padding: 12px 20px; }
-        nav a { color: #dbeafe; margin-right: 14px; text-decoration: none; }
-        .container { max-width: 900px; margin: 24px auto; background: white; padding: 20px; border-radius: 8px; }
-        .card { border: 1px solid #e5e7eb; border-radius: 6px; padding: 14px; margin-bottom: 12px; }
-        .messages { list-style: none; padding: 0; }
-        .messages li { padding: 8px; margin-bottom: 6px; border-radius: 4px; }
-        .success { background: #dcfce7; }
-        .error { background: #fee2e2; }
-        .info { background: #e0f2fe; }
-        .button { display: inline-block; border: none; padding: 8px 12px; border-radius: 4px; background: #2563eb; color: #fff; text-decoration: none; cursor: pointer; }
-        .button-danger { background: #dc2626; }
-        .notification-card { background: #fef9c3; }
-        form { margin: 0; }
-    </style>
+    <title>{% block title %}PPM Social Network{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
-<body>
-<nav>
+<body class="{% if user.is_authenticated %}body--app{% else %}body--public{% endif %}">
     {% if user.is_authenticated %}
-        <a href="{% url 'social:feed' %}">Feed</a>
-        <a href="{% url 'accounts:user-list' %}">Utenti</a>
-        <a href="{% url 'accounts:profile-detail' user.pk %}">Il mio profilo</a>
-        <a href="{% url 'social:post-create' %}">Nuovo post</a>
-        {% if user.is_moderator %}
-            <a href="{% url 'accounts:moderation-users' %}">Moderazione account</a>
-        {% endif %}
-        <form action="{% url 'logout' %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button class="button" type="submit">Logout</button>
-        </form>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'accounts:signup' %}">Registrati</a>
+        <header class="site-header">
+            <div class="site-header__inner">
+                <div class="site-header__side site-header__side--left">
+                    <a class="nav-text-link {% if request.resolver_match.url_name == 'feed' %}is-active{% endif %}" href="{% url 'social:feed' %}">Feed</a>
+                </div>
+                <div class="site-header__brand-wrap">
+                    <a class="site-brand" href="{% url 'social:feed' %}">Social Network</a>
+                    <a class="camera-link" href="{% url 'social:post-create' %}" aria-label="Nuovo post">
+                        <span aria-hidden="true">📷</span>
+                    </a>
+                </div>
+                <div class="site-header__side site-header__side--right">
+                    <a class="nav-text-link {% if request.resolver_match.url_name == 'profile-posts' and request.user.pk == user.pk %}is-active{% endif %}" href="{% url 'social:profile-posts' user.pk %}">I miei post</a>
+                </div>
+            </div>
+        </header>
+
+        <div id="social-shell-root">
+            <div class="shell-panel shell-panel--left" data-shell-panel="settings">
+                <button class="shell-panel__toggle" type="button" data-shell-toggle="settings" aria-expanded="false">
+                    <span>⚙️ Impostazioni</span>
+                    <span data-shell-indicator="settings">+</span>
+                </button>
+                <div class="shell-panel__menu" data-shell-menu="settings" hidden>
+                    {% for link in social_shell_data.settingsLinks %}
+                        <a class="shell-panel__link text-button" href="{{ link.url }}">{{ link.label }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="shell-panel shell-panel--right" data-shell-panel="messages">
+                <button class="shell-panel__toggle" type="button" data-shell-toggle="messages" aria-expanded="false">
+                    <span>💬 Messaggi</span>
+                    <span data-shell-indicator="messages">+</span>
+                </button>
+                <div class="shell-panel__menu" data-shell-menu="messages" hidden>
+                    {% if social_shell_data.conversations %}
+                        {% for conversation in social_shell_data.conversations %}
+                            <div class="shell-panel__chat">
+                                <div class="shell-panel__chat-top">
+                                    <a class="text-button" href="{{ conversation.url }}">{{ conversation.title }}</a>
+                                    <form method="post" action="{{ conversation.deleteUrl }}">
+                                        {% csrf_token %}
+                                        <button class="text-button text-button--danger" type="submit">Elimina</button>
+                                    </form>
+                                </div>
+                                <span class="helper-text">{{ conversation.subtitle }}</span>
+                                <span class="helper-text">{{ conversation.updatedAt }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="shell-panel__empty">Nessuna chat ancora disponibile.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="social-shell-controls"></div>
     {% endif %}
-</nav>
-<div class="container">
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li class="{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
+
+    <main class="page-wrapper {% if user.is_authenticated %}page-wrapper--app{% else %}page-wrapper--public{% endif %}">
+        <section class="content-surface {% if user.is_authenticated %}content-surface--app{% else %}content-surface--public{% endif %}">
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li class="flash-message flash-message--{{ message.tags|default:'info' }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            {% if user.is_authenticated %}
+                <a href="{% url 'social:feed' %}">Feed</a>
+                <a href="{% url 'accounts:profile-detail' user.pk %}">Profilo</a>
+                <a href="{% url 'accounts:user-list' %}">Utenti</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'accounts:signup' %}">Registrati</a>
+            {% endif %}
+            <a href="https://railway.app" target="_blank" rel="noreferrer">Deploy</a>
+        </div>
+    </footer>
+
+    {% if user.is_authenticated %}
+        <script src="{% static 'js/social-shell.js' %}" defer></script>
     {% endif %}
-    {% block content %}{% endblock %}
-</div>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

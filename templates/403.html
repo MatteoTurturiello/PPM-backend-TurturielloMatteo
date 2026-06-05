@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Azione non consentita</h2>
-<p>Non hai i permessi necessari per eseguire questa operazione.</p>
-<a class="button" href="{% url 'social:feed' %}">Torna al feed</a>
+<div class="empty-state empty-state--padded">
+    <p class="eyebrow">403</p>
+    <h1>Azione non consentita</h1>
+    <p>Non hai i permessi necessari per eseguire questa operazione.</p>
+    <a class="pill-link" href="{% url 'social:feed' %}">Torna al feed</a>
+</div>
 {% endblock %}

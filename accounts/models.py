@@ -10,6 +10,7 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=20, choices=Roles.choices, default=Roles.STANDARD)
     bio = models.TextField(blank=True)
+    profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
 
     def is_moderator(self):
         return self.role == self.Roles.MODERATOR

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-intro page-intro--split">
+    <div>
+        <p class="eyebrow">Messaggi</p>
+        <h1>{{ page_title }}</h1>
+        <p class="section-copy">La chat resta disponibile nel menu messaggi finché non la elimini.</p>
+    </div>
+    <form method="post" action="{% url 'social:conversation-delete' conversation.pk %}">
+        {% csrf_token %}
+        <button class="text-button text-button--danger" type="submit">Elimina chat</button>
+    </form>
+</section>
+
+<section class="chat-card">
+    <div class="chat-thread">
+        {% for chat_message in chat_messages %}
+            <article class="chat-bubble {% if chat_message.sender_id == user.pk %}chat-bubble--self{% endif %}">
+                <p class="chat-bubble__author">{{ chat_message.sender.username }}</p>
+                <p>{{ chat_message.content|linebreaksbr }}</p>
+                <span class="chat-bubble__time">{{ chat_message.created_at|date:'d/m/Y H:i' }}</span>
+            </article>
+        {% empty %}
+            <div class="empty-state empty-state--chat">
+                <p>Nessun messaggio ancora. Inizia la conversazione con {{ other_user.username }}.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="post" class="editor-card editor-card--chat">
+        {% csrf_token %}
+        <label class="form-label" for="{{ form.content.id_for_label }}">Nuovo messaggio</label>
+        {{ form.content }}
+        {% if form.content.errors %}<div class="form-errors">{{ form.content.errors }}</div>{% endif %}
+        <div class="action-row">
+            <button class="pill-link pill-link--solid" type="submit">Invia</button>
+            <a class="text-button" href="{% url 'accounts:profile-detail' other_user.pk %}">Apri profilo</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

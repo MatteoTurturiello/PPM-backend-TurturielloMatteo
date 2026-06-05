@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button" type="submit">Accedi</button>
-</form>
+<section class="auth-card">
+    <div class="auth-card__intro">
+        <p class="eyebrow">Bentornato</p>
+        <h1>Accedi al tuo social.</h1>
+        <p class="section-copy">Rientra nel feed, controlla le chat e pubblica nuovi contenuti in pochi click.</p>
+    </div>
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <label class="form-label" for="id_username">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}<div class="form-errors">{{ form.username.errors }}</div>{% endif %}
+
+        <label class="form-label" for="id_password">Password</label>
+        {{ form.password }}
+        {% if form.password.errors %}<div class="form-errors">{{ form.password.errors }}</div>{% endif %}
+
+        <button class="pill-link pill-link--solid auth-form__submit" type="submit">Accedi</button>
+        <p class="helper-text">Non hai un account? <a class="text-button" href="{% url 'accounts:signup' %}">Registrati ora</a></p>
+    </form>
+</section>
 {% endblock %}

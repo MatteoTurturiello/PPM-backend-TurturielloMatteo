@@ -29,6 +29,11 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/profile_detail.html'
     context_object_name = 'profile_user'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['can_start_chat'] = self.request.user.pk != self.object.pk
+        return context
+
 
 class UserListView(LoginRequiredMixin, ListView):
     model = User

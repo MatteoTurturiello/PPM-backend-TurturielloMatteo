@@ -1,9 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Modifica profilo</h2>
-<form method="post">
+<section class="page-intro">
+    <div>
+        <p class="eyebrow">Impostazioni</p>
+        <h1>Modifica profilo</h1>
+        <p class="section-copy">Aggiorna i tuoi dati e aggiungi una foto profilo leggera.</p>
+    </div>
+</section>
+
+<form method="post" enctype="multipart/form-data" class="editor-card">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="button" type="submit">Salva</button>
+    {{ form.non_field_errors }}
+
+    <div class="form-grid">
+        <div>
+            <label class="form-label" for="{{ form.first_name.id_for_label }}">Nome</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}<div class="form-errors">{{ form.first_name.errors }}</div>{% endif %}
+        </div>
+        <div>
+            <label class="form-label" for="{{ form.last_name.id_for_label }}">Cognome</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}<div class="form-errors">{{ form.last_name.errors }}</div>{% endif %}
+        </div>
+    </div>
+
+    <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+    {{ form.email }}
+    {% if form.email.errors %}<div class="form-errors">{{ form.email.errors }}</div>{% endif %}
+
+    <label class="form-label" for="{{ form.bio.id_for_label }}">Bio</label>
+    {{ form.bio }}
+    {% if form.bio.errors %}<div class="form-errors">{{ form.bio.errors }}</div>{% endif %}
+
+    <label class="form-label" for="{{ form.profile_image.id_for_label }}">Foto profilo</label>
+    {{ form.profile_image }}
+    <p class="helper-text">Massimo 450 KB e 1600x1600 px.</p>
+    {% if form.profile_image.errors %}<div class="form-errors">{{ form.profile_image.errors }}</div>{% endif %}
+
+    <div class="action-row">
+        <button class="pill-link pill-link--solid" type="submit">Salva profilo</button>
+        <a class="text-button" href="{% url 'accounts:profile-detail' user.pk %}">Annulla</a>
+    </div>
 </form>
 {% endblock %}

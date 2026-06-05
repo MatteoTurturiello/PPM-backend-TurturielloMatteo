@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Post di {{ profile_owner.username }}</h2>
-{% for post in posts %}
-<div class="card">
-    <p>{{ post.content }}</p>
-    <p><small>{{ post.created_at|date:'d/m/Y H:i' }}</small></p>
-    {% if user.pk == profile_owner.pk or user.is_moderator %}
-        <a class="button button-danger" href="{% url 'social:post-delete' post.pk %}">Elimina</a>
+<section class="page-intro page-intro--split">
+    <div>
+        <p class="eyebrow">Profilo</p>
+        <h1>{{ page_title }}</h1>
+        <p class="section-copy">Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.</p>
+    </div>
+    {% if user.pk == profile_owner.pk %}
+        <a class="pill-link" href="{% url 'social:post-create' %}">Nuovo post</a>
     {% endif %}
+</section>
+
+<div class="feed-stack">
+    {% for post in posts %}
+        {% include 'social/_post_card.html' %}
+    {% empty %}
+        <div class="empty-state">
+            <p>Nessun post pubblicato.</p>
+        </div>
+    {% endfor %}
 </div>
-{% empty %}
-<p>Nessun post pubblicato.</p>
-{% endfor %}
 {% endblock %}

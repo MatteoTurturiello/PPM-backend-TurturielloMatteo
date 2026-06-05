@@ -21,12 +21,52 @@
                     </a>
                 </div>
                 <div class="site-header__side site-header__side--right">
-                    <a class="nav-text-link {% if request.resolver_match.url_name == 'profile-posts' and request.resolver_match.kwargs.pk == user.pk %}is-active{% endif %}" href="{% url 'social:profile-posts' user.pk %}">I miei post</a>
+                    <a class="nav-text-link {% if request.resolver_match.url_name == 'profile-posts' and request.user.pk == user.pk %}is-active{% endif %}" href="{% url 'social:profile-posts' user.pk %}">I miei post</a>
                 </div>
             </div>
         </header>
-        <div id="social-shell-root"></div>
-        {{ social_shell_data|json_script:"social-shell-data" }}
+
+        <div id="social-shell-root">
+            <div class="shell-panel shell-panel--left" data-shell-panel="settings">
+                <button class="shell-panel__toggle" type="button" data-shell-toggle="settings" aria-expanded="false">
+                    <span>⚙️ Impostazioni</span>
+                    <span data-shell-indicator="settings">+</span>
+                </button>
+                <div class="shell-panel__menu" data-shell-menu="settings" hidden>
+                    {% for link in social_shell_data.settingsLinks %}
+                        <a class="shell-panel__link text-button" href="{{ link.url }}">{{ link.label }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="shell-panel shell-panel--right" data-shell-panel="messages">
+                <button class="shell-panel__toggle" type="button" data-shell-toggle="messages" aria-expanded="false">
+                    <span>💬 Messaggi</span>
+                    <span data-shell-indicator="messages">+</span>
+                </button>
+                <div class="shell-panel__menu" data-shell-menu="messages" hidden>
+                    {% if social_shell_data.conversations %}
+                        {% for conversation in social_shell_data.conversations %}
+                            <div class="shell-panel__chat">
+                                <div class="shell-panel__chat-top">
+                                    <a class="text-button" href="{{ conversation.url }}">{{ conversation.title }}</a>
+                                    <form method="post" action="{{ conversation.deleteUrl }}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{ social_shell_data.nextUrl }}">
+                                        <button class="text-button text-button--danger" type="submit">Elimina</button>
+                                    </form>
+                                </div>
+                                <span class="helper-text">{{ conversation.subtitle }}</span>
+                                <span class="helper-text">{{ conversation.updatedAt }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="shell-panel__empty">Nessuna chat ancora disponibile.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="social-shell-controls"></div>
     {% endif %}
 
     <main class="page-wrapper {% if user.is_authenticated %}page-wrapper--app{% else %}page-wrapper--public{% endif %}">

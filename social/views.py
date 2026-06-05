@@ -16,6 +16,7 @@ User = get_user_model()
 
 
 def _notify_post_deleted_by_moderator(post):
+    """Create an in-app notification for the post author when a moderator deletes their post."""
     Notification.objects.create(
         user_id=post.author_id,
         message='Il tuo post è stato eliminato da un moderatore.',

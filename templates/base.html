@@ -52,7 +52,6 @@
                                     <a class="text-button" href="{{ conversation.url }}">{{ conversation.title }}</a>
                                     <form method="post" action="{{ conversation.deleteUrl }}">
                                         {% csrf_token %}
-                                        <input type="hidden" name="next" value="{{ social_shell_data.nextUrl }}">
                                         <button class="text-button text-button--danger" type="submit">Elimina</button>
                                     </form>
                                 </div>

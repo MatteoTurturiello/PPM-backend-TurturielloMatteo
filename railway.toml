@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT"
+startCommand = "/opt/venv/bin/python manage.py migrate && /opt/venv/bin/python manage.py collectstatic --noinput && /opt/venv/bin/gunicorn PPMbackend.wsgi:application --bind 0.0.0.0:$PORT"
 healthcheckPath = "/healthz/"
 healthcheckTimeout = 30
 restartPolicyType = "on_failure"

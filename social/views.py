@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
@@ -38,6 +39,16 @@ def get_or_create_conversation(user_a, user_b):
     first, second = sorted([user_a.pk, user_b.pk])
     conversation, _ = Conversation.objects.get_or_create(user1_id=first, user2_id=second)
     return conversation
+
+
+def safe_redirect_target(request, candidate, fallback='social:feed'):
+    if candidate and url_has_allowed_host_and_scheme(
+        url=candidate,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return candidate
+    return reverse(fallback)
 
 
 class FeedView(LoginRequiredMixin, ListView):
@@ -159,7 +170,8 @@ def toggle_post_like(request, pk):
         post.liked_by.add(request.user)
         messages.success(request, 'Hai messo like al post.')
 
-    return redirect(request.POST.get('next') or request.META.get('HTTP_REFERER') or reverse('social:feed'))
+    target_url = safe_redirect_target(request, request.POST.get('next'))
+    return redirect(target_url)
 
 
 @login_required
@@ -266,4 +278,5 @@ def delete_conversation(request, pk):
 
     conversation.delete()
     messages.info(request, 'Chat eliminata.')
-    return redirect(request.POST.get('next') or reverse('social:feed'))
+    target_url = safe_redirect_target(request, request.POST.get('next'))
+    return redirect(target_url)

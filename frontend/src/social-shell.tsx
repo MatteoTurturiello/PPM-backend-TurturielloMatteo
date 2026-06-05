@@ -23,6 +23,30 @@ type ShellData = {
   nextUrl: string;
 };
 
+function sanitizeRelativeUrl(value: string | undefined, fallback = '/'): string {
+  if (typeof value === 'string' && /^\/(?!\/)/.test(value)) {
+    return value;
+  }
+
+  return fallback;
+}
+
+function sanitizeShellData(data: ShellData): ShellData {
+  return {
+    ...data,
+    nextUrl: sanitizeRelativeUrl(data.nextUrl),
+    settingsLinks: data.settingsLinks.map((link) => ({
+      ...link,
+      url: sanitizeRelativeUrl(link.url),
+    })),
+    conversations: data.conversations.map((conversation) => ({
+      ...conversation,
+      url: sanitizeRelativeUrl(conversation.url),
+      deleteUrl: sanitizeRelativeUrl(conversation.deleteUrl),
+    })),
+  };
+}
+
 function useOutsideClose<T extends HTMLElement>(open: boolean, onClose: () => void) {
   const ref = useRef<T | null>(null);
 
@@ -134,6 +158,7 @@ const rootElement = document.getElementById('social-shell-root');
 const dataElement = document.getElementById('social-shell-data');
 
 if (rootElement && dataElement?.textContent) {
-  const data = JSON.parse(dataElement.textContent) as ShellData;
+  const parsed = JSON.parse(dataElement.textContent) as ShellData;
+  const data = sanitizeShellData(parsed);
   createRoot(rootElement).render(<App data={data} />);
 }

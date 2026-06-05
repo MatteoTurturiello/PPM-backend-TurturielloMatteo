@@ -9,7 +9,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import MessageForm, PostForm
-from .models import Conversation, FriendRequest, Friendship, Notification, Post
+from .models import ContactMessage, Conversation, FriendRequest, Friendship, Notification, Post
 
 User = get_user_model()
 
@@ -160,9 +160,12 @@ def toggle_post_like(request, pk):
         post.liked_by.add(request.user)
         messages.success(request, 'Hai messo like al post.')
 
+    anchor = f'#post-{post.pk}'
     if request.POST.get('return_view') == 'profile-posts':
-        return redirect('social:profile-posts', pk=post.author_id)
-    return redirect('social:feed')
+        from django.http import HttpResponseRedirect
+        return HttpResponseRedirect(reverse('social:profile-posts', kwargs={'pk': post.author_id}) + anchor)
+    from django.http import HttpResponseRedirect
+    return HttpResponseRedirect(reverse('social:feed') + anchor)
 
 
 @login_required
@@ -270,3 +273,16 @@ def delete_conversation(request, pk):
     conversation.delete()
     messages.info(request, 'Chat eliminata.')
     return redirect('social:feed')
+
+
+@login_required
+def contact_admin(request):
+    if request.method == 'POST':
+        content = request.POST.get('content', '').strip()
+        if content:
+            ContactMessage.objects.create(sender=request.user, content=content)
+            messages.success(request, 'Messaggio inviato all\'admin.')
+        else:
+            messages.error(request, 'Il messaggio non può essere vuoto.')
+    next_url = request.POST.get('next') or request.META.get('HTTP_REFERER') or '/'
+    return redirect(next_url)

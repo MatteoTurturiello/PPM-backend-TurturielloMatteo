@@ -110,3 +110,16 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.sender.username}: {self.content[:30]}'
+
+
+class ContactMessage(models.Model):
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='contact_messages')
+    content = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.sender.username}: {self.content[:40]}'

@@ -36,6 +36,10 @@
                     {% for link in social_shell_data.settingsLinks %}
                         <a class="shell-panel__link text-button" href="{{ link.url }}">{{ link.label }}</a>
                     {% endfor %}
+                    <form method="post" action="{% url 'logout' %}" class="shell-panel__link">
+                        {% csrf_token %}
+                        <button class="text-button text-button--danger" type="submit">🚪 Logout</button>
+                    </form>
                 </div>
             </div>
 
@@ -62,6 +66,18 @@
                     {% else %}
                         <p class="shell-panel__empty">Nessuna chat ancora disponibile.</p>
                     {% endif %}
+                    {% if user.is_superuser and social_shell_data.contactMessages %}
+                        <div class="shell-panel__section-title">📩 Messaggi da utenti</div>
+                        {% for cm in social_shell_data.contactMessages %}
+                            <div class="shell-panel__contact-msg">
+                                <span class="shell-panel__contact-sender">{{ cm.sender.username }}</span>
+                                <span class="helper-text">{{ cm.created_at|date:'d/m/Y H:i' }}</span>
+                                <p class="shell-panel__contact-text">{{ cm.content }}</p>
+                            </div>
+                        {% endfor %}
+                    {% elif user.is_superuser %}
+                        <p class="shell-panel__empty">Nessun messaggio da utenti.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -85,15 +101,56 @@
         <div class="site-footer__inner">
             {% if user.is_authenticated %}
                 <a href="{% url 'social:feed' %}">Feed</a>
-                <a href="{% url 'accounts:profile-detail' user.pk %}">Profilo</a>
                 <a href="{% url 'accounts:user-list' %}">Utenti</a>
+                <a href="{% url 'accounts:profile-detail' user.pk %}">Il mio profilo</a>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
                 <a href="{% url 'accounts:signup' %}">Registrati</a>
             {% endif %}
-            <a href="https://railway.app" target="_blank" rel="noreferrer">Deploy</a>
+            <span class="site-footer__copy">© 2026 SocialNetwork</span>
+            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('privacy-modal').showModal()">Privacy</button>
+            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('contact-modal').showModal()">Contact us</button>
         </div>
     </footer>
+
+    <!-- Privacy modal -->
+    <dialog id="privacy-modal" class="modal-dialog">
+        <div class="modal-dialog__inner">
+            <h2>Privacy Policy</h2>
+            <p>Questa piattaforma raccoglie i dati personali forniti durante la registrazione (username, password) al solo scopo di fornire il servizio di social network.</p>
+            <p>I dati non vengono ceduti a terzi né utilizzati per scopi commerciali. Le immagini caricate sono visibili agli altri utenti registrati.</p>
+            <p>Hai diritto di accedere, modificare o cancellare i tuoi dati in qualsiasi momento tramite le impostazioni del profilo.</p>
+            <p>Per qualsiasi richiesta relativa alla privacy, utilizza la funzione "Contact us".</p>
+            <div class="modal-dialog__actions">
+                <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()">Chiudi</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Contact us modal -->
+    <dialog id="contact-modal" class="modal-dialog">
+        <div class="modal-dialog__inner">
+            <h2>Contatta l'admin</h2>
+            <p class="section-copy">Invia un messaggio privato all'amministratore della piattaforma.</p>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'social:contact-admin' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <label class="form-label" for="contact-content">Messaggio</label>
+                    <textarea id="contact-content" name="content" rows="4" maxlength="1000" placeholder="Scrivi il tuo messaggio..." required></textarea>
+                    <div class="modal-dialog__actions">
+                        <button class="pill-link pill-link--solid" type="submit">Invia</button>
+                        <button type="button" class="text-button" onclick="this.closest('dialog').close()">Annulla</button>
+                    </div>
+                </form>
+            {% else %}
+                <p>Devi essere <a href="{% url 'login' %}">autenticato</a> per inviare un messaggio.</p>
+                <div class="modal-dialog__actions">
+                    <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()">Chiudi</button>
+                </div>
+            {% endif %}
+        </div>
+    </dialog>
 
     {% if user.is_authenticated %}
         <script src="{% static 'js/social-shell.js' %}" defer></script>

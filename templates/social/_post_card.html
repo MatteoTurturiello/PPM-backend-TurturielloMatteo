@@ -1,4 +1,4 @@
-<article class="post-card">
+<article class="post-card" id="post-{{ post.pk }}">
     <div class="post-card__header">
         <a class="avatar avatar--small" href="{% url 'accounts:profile-detail' post.author.pk %}">
             {% if post.author.profile_image %}

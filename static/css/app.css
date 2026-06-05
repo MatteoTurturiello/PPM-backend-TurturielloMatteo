@@ -547,15 +547,34 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
   text-underline-offset: 0.3rem;
 }
 
-.shell-panel {
-  position: fixed;
-  top: 10.6rem;
-  z-index: 40;
-  width: min(280px, calc(100vw - 2rem));
+.modal-dialog__actions--wrap {
+  flex-wrap: wrap;
 }
 
-.shell-panel--left { left: max(1rem, calc((100vw - 1160px) / 2)); }
-.shell-panel--right { right: max(1rem, calc((100vw - 1160px) / 2)); }
+[data-language-option][aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #fff;
+}
+
+#social-shell-root {
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  padding: 0 1.5rem 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.shell-panel {
+  position: sticky;
+  top: 6.6rem;
+  z-index: 20;
+  width: min(240px, calc(100vw - 2rem));
+}
+
+.shell-panel--left { justify-self: start; }
+.shell-panel--right { justify-self: end; }
 
 .shell-panel__toggle {
   width: 100%;
@@ -585,6 +604,10 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
 }
 
 .shell-panel__menu[hidden] { display: none; }
+
+.shell-panel__language-btn {
+  text-align: left;
+}
 
 .shell-panel__link,
 .shell-panel__chat {
@@ -636,9 +659,15 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1200px) {
+  #social-shell-root {
+    grid-template-columns: 1fr;
+    padding-bottom: 0;
+  }
+
   .shell-panel {
     position: static;
     width: 100%;

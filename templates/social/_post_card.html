@@ -14,7 +14,7 @@
     </div>
 
     <div class="post-card__body">
-        <p class="post-card__text">{{ post.content|linebreaksbr }}</p>
+        <p class="post-card__text" data-post-text>{{ post.content|linebreaksbr }}</p>
         {% if post.image %}
             <img class="post-card__image" src="{{ post.image.url }}" alt="Immagine del post di {{ post.author.username }}">
         {% endif %}
@@ -24,10 +24,11 @@
         <form method="post" action="{% url 'social:post-like' post.pk %}" class="inline-form">
             {% csrf_token %}
             <input type="hidden" name="return_view" value="{% if request.resolver_match.url_name == 'profile-posts' %}profile-posts{% else %}feed{% endif %}">
-            <button class="text-button text-button--like" type="submit">
+            <button class="text-button text-button--like" type="submit" data-like-button data-like-state="{% if post.pk in liked_post_ids %}liked{% else %}default{% endif %}">
                 {% if post.pk in liked_post_ids %}♥ Ti piace{% else %}♡ Mi piace{% endif %}
             </button>
-            <span class="post-card__likes">{{ post.liked_by.count }} like</span>
+            <span class="post-card__likes" data-likes-count="{{ post.liked_by.count }}">{{ post.liked_by.count }} like</span>
+            <button class="text-button text-button--translate" type="button" data-post-translate>Traduci (in Italiano)</button>
         </form>
 
         <div class="post-card__owner-actions">

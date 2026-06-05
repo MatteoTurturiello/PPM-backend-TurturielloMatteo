@@ -29,13 +29,15 @@
         <div id="social-shell-root">
             <div class="shell-panel shell-panel--left" data-shell-panel="settings">
                 <button class="shell-panel__toggle" type="button" data-shell-toggle="settings" aria-expanded="false">
-                    <span>⚙️ Impostazioni</span>
+                    <span data-i18n-key="settingsTitle">⚙️ Impostazioni</span>
                     <span data-shell-indicator="settings">+</span>
                 </button>
                 <div class="shell-panel__menu" data-shell-menu="settings" hidden>
                     {% for link in social_shell_data.settingsLinks %}
                         <a class="shell-panel__link text-button" href="{{ link.url }}">{{ link.label }}</a>
                     {% endfor %}
+                    <div class="shell-panel__section-title" data-i18n-key="languageSectionTitle">🌐 Lingua</div>
+                    <button class="text-button shell-panel__language-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
                     <form method="post" action="{% url 'logout' %}" class="shell-panel__link">
                         {% csrf_token %}
                         <button class="text-button text-button--danger" type="submit">🚪 Logout</button>
@@ -45,7 +47,7 @@
 
             <div class="shell-panel shell-panel--right" data-shell-panel="messages">
                 <button class="shell-panel__toggle" type="button" data-shell-toggle="messages" aria-expanded="false">
-                    <span>💬 Messaggi</span>
+                    <span data-i18n-key="messagesTitle">💬 Messaggi</span>
                     <span data-shell-indicator="messages">+</span>
                 </button>
                 <div class="shell-panel__menu" data-shell-menu="messages" hidden>
@@ -108,8 +110,8 @@
                 <a href="{% url 'accounts:signup' %}">Registrati</a>
             {% endif %}
             <span class="site-footer__copy">© 2026 SocialNetwork</span>
-            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('privacy-modal').showModal()">Privacy</button>
-            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('contact-modal').showModal()">Contact us</button>
+            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('privacy-modal').showModal()" data-i18n-key="privacyLabel">Privacy</button>
+            <button type="button" class="site-footer__link-btn" onclick="document.getElementById('contact-modal').showModal()" data-i18n-key="contactUsLabel">Contact us</button>
         </div>
     </footer>
 
@@ -149,6 +151,24 @@
                     <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()">Chiudi</button>
                 </div>
             {% endif %}
+        </div>
+    </dialog>
+
+    <dialog id="language-modal" class="modal-dialog">
+        <div class="modal-dialog__inner">
+            <h2 data-i18n-key="languageModalTitle">Seleziona lingua</h2>
+            <p class="section-copy" data-i18n-key="languageModalDescription">Scegli la lingua dell'interfaccia. I testi dei post restano invariati finché non premi Traduci.</p>
+            <div class="modal-dialog__actions modal-dialog__actions--wrap">
+                <button type="button" class="pill-link" data-language-option="it">Italiano</button>
+                <button type="button" class="pill-link" data-language-option="en">English</button>
+                <button type="button" class="pill-link" data-language-option="es">Español</button>
+                <button type="button" class="pill-link" data-language-option="fr">Français</button>
+                <button type="button" class="pill-link" data-language-option="de">Deutsch</button>
+                <button type="button" class="pill-link" data-language-option="zh">中文</button>
+            </div>
+            <div class="modal-dialog__actions">
+                <button type="button" class="text-button" data-language-close data-i18n-key="closeAction">Chiudi</button>
+            </div>
         </div>
     </dialog>
 

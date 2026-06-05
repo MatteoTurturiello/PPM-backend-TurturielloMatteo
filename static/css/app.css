@@ -554,6 +554,11 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
 [data-language-option][aria-pressed="true"] {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #fff;
+  font-weight: 700;
+}
+
+[data-language-option][aria-pressed="true"]::after {
+  content: " ✓";
 }
 
 #social-shell-root {

@@ -28,7 +28,7 @@
                 {% if post.pk in liked_post_ids %}♥ Ti piace{% else %}♡ Mi piace{% endif %}
             </button>
             <span class="post-card__likes" data-likes-count="{{ post.liked_by.count }}">{{ post.liked_by.count }} like</span>
-            <button class="text-button text-button--translate" type="button" data-post-translate>Traduci (in Italiano)</button>
+            <button class="text-button text-button--translate" type="button" data-post-translate data-i18n-key="translateAction">Traduci (in Italiano)</button>
         </form>
 
         <div class="post-card__owner-actions">

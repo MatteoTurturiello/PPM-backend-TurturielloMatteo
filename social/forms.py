@@ -15,6 +15,7 @@ class PostForm(forms.ModelForm):
                     'rows': 4,
                     'placeholder': 'Condividi un pensiero, una foto o una emoji ✨',
                     'class': 'post-composer__textarea',
+                    'data-i18n-placeholder': 'postContentPlaceholder',
                 }
             ),
         }

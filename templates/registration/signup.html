@@ -12,7 +12,7 @@
         {{ form.non_field_errors }}
 
         <div>
-            <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+            <label class="form-label" for="{{ form.username.id_for_label }}" data-i18n-key="usernameLabel">Username</label>
             {{ form.username }}
             {% if form.username.errors %}<div class="form-errors">{{ form.username.errors }}</div>{% endif %}
         </div>
@@ -37,7 +37,7 @@
             {% if form.bio.errors %}<div class="form-errors">{{ form.bio.errors }}</div>{% endif %}
         </div>
         <div>
-            <label class="form-label" for="{{ form.password1.id_for_label }}">Password</label>
+            <label class="form-label" for="{{ form.password1.id_for_label }}" data-i18n-key="passwordLabel">Password</label>
             {{ form.password1 }}
             {% if form.password1.errors %}<div class="form-errors">{{ form.password1.errors }}</div>{% endif %}
         </div>

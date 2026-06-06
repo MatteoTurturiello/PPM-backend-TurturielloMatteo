@@ -75,6 +75,8 @@ type TranslationKey =
   | 'chatNoMessagesPrefix'
   | 'maxPhotoSize'
   | 'confirmPasswordLabel'
+  | 'usernameLabel'
+  | 'passwordLabel'
   | 'loginAction'
   | 'createAccountAction'
   | 'postContentPlaceholder'
@@ -88,6 +90,7 @@ type TranslationKey =
   | 'hasAccountPrompt'
   | 'currentFileLabel'
   | 'changeFileLabel'
+  | 'chooseFileAction'
   | 'removePhotoAction'
   | 'newMessageLabel'
   | 'sendAction'
@@ -203,6 +206,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: 'Nessun messaggio ancora. Inizia la conversazione con',
     maxPhotoSize: 'Massimo 450 KB e 1600×1600 px.',
     confirmPasswordLabel: 'Conferma password',
+    usernameLabel: 'Username',
+    passwordLabel: 'Password',
     loginAction: 'Accedi',
     createAccountAction: 'Crea account',
     postContentPlaceholder: 'Condividi un pensiero, una foto o una emoji ✨',
@@ -216,6 +221,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: 'Hai già un account?',
     currentFileLabel: 'Attualmente',
     changeFileLabel: 'Modifica',
+    chooseFileAction: 'Scegli file',
     removePhotoAction: 'Rimuovi foto',
     newMessageLabel: 'Nuovo messaggio',
     sendAction: 'Invia',
@@ -326,6 +332,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: 'No messages yet. Start the conversation with',
     maxPhotoSize: 'Maximum 450 KB and 1600×1600 px.',
     confirmPasswordLabel: 'Confirm password',
+    usernameLabel: 'Username',
+    passwordLabel: 'Password',
     loginAction: 'Sign in',
     createAccountAction: 'Create account',
     postContentPlaceholder: 'Share a thought, a photo or an emoji ✨',
@@ -339,6 +347,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: 'Already have an account?',
     currentFileLabel: 'Currently',
     changeFileLabel: 'Change',
+    chooseFileAction: 'Choose file',
     removePhotoAction: 'Remove photo',
     newMessageLabel: 'New message',
     sendAction: 'Send',
@@ -449,6 +458,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: 'Aún no hay mensajes. Empieza la conversación con',
     maxPhotoSize: 'Máximo 450 KB y 1600×1600 px.',
     confirmPasswordLabel: 'Confirmar contraseña',
+    usernameLabel: 'Nombre de usuario',
+    passwordLabel: 'Contraseña',
     loginAction: 'Iniciar sesión',
     createAccountAction: 'Crear cuenta',
     postContentPlaceholder: 'Comparte un pensamiento, una foto o un emoji ✨',
@@ -462,6 +473,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: '¿Ya tienes una cuenta?',
     currentFileLabel: 'Actualmente',
     changeFileLabel: 'Cambiar',
+    chooseFileAction: 'Elegir archivo',
     removePhotoAction: 'Quitar foto',
     newMessageLabel: 'Nuevo mensaje',
     sendAction: 'Enviar',
@@ -572,6 +584,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: "Aucun message pour l'instant. Commencez la conversation avec",
     maxPhotoSize: 'Maximum 450 Ko et 1600×1600 px.',
     confirmPasswordLabel: 'Confirmer le mot de passe',
+    usernameLabel: 'Nom d’utilisateur',
+    passwordLabel: 'Mot de passe',
     loginAction: 'Se connecter',
     createAccountAction: 'Créer un compte',
     postContentPlaceholder: 'Partagez une pensée, une photo ou un emoji ✨',
@@ -585,6 +599,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: 'Vous avez déjà un compte ?',
     currentFileLabel: 'Actuellement',
     changeFileLabel: 'Modifier',
+    chooseFileAction: 'Choisir un fichier',
     removePhotoAction: 'Supprimer la photo',
     newMessageLabel: 'Nouveau message',
     sendAction: 'Envoyer',
@@ -695,6 +710,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: 'Noch keine Nachrichten. Starte die Unterhaltung mit',
     maxPhotoSize: 'Maximal 450 KB und 1600×1600 px.',
     confirmPasswordLabel: 'Passwort bestätigen',
+    usernameLabel: 'Benutzername',
+    passwordLabel: 'Passwort',
     loginAction: 'Anmelden',
     createAccountAction: 'Konto erstellen',
     postContentPlaceholder: 'Teile einen Gedanken, ein Foto oder ein Emoji ✨',
@@ -708,6 +725,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: 'Hast du schon ein Konto?',
     currentFileLabel: 'Aktuell',
     changeFileLabel: 'Ändern',
+    chooseFileAction: 'Datei auswählen',
     removePhotoAction: 'Foto entfernen',
     newMessageLabel: 'Neue Nachricht',
     sendAction: 'Senden',
@@ -818,6 +836,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     chatNoMessagesPrefix: '还没有消息。开始与',
     maxPhotoSize: '最大 450 KB，1600×1600 像素。',
     confirmPasswordLabel: '确认密码',
+    usernameLabel: '用户名',
+    passwordLabel: '密码',
     loginAction: '登录',
     createAccountAction: '创建账户',
     postContentPlaceholder: '分享一个想法、照片或表情 ✨',
@@ -831,6 +851,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     hasAccountPrompt: '已有账号？',
     currentFileLabel: '当前',
     changeFileLabel: '修改',
+    chooseFileAction: '选择文件',
     removePhotoAction: '移除头像',
     newMessageLabel: '新消息',
     sendAction: '发送',
@@ -925,6 +946,28 @@ function applyLanguageToUi(language: LanguageCode) {
 
   document.querySelectorAll<HTMLElement>('[data-selected-file]').forEach((element) => {
     element.dataset.selectedFilePrefix = dictionary.selectedFilePrefix;
+    element.dataset.noFileText = dictionary.noFileSelected;
+    const fileInputId = element.dataset.fileInputId;
+    const fileInput = fileInputId ? document.getElementById(fileInputId) as HTMLInputElement | null : null;
+    const file = fileInput?.files?.[0];
+    element.textContent = file ? `${dictionary.selectedFilePrefix}: ${file.name}` : dictionary.noFileSelected;
+  });
+
+  document.querySelectorAll<HTMLInputElement>('input[type="file"][data-i18n-file-input]').forEach((fileInput) => {
+    if (fileInput.dataset.i18nFileBound === 'true') {
+      return;
+    }
+    fileInput.dataset.i18nFileBound = 'true';
+    fileInput.addEventListener('change', () => {
+      const fileLabel = document.querySelector<HTMLElement>(`[data-selected-file][data-file-input-id="${fileInput.id}"]`);
+      if (!fileLabel) {
+        return;
+      }
+      const [file] = fileInput.files ?? [];
+      const selectedFilePrefix = fileLabel.dataset.selectedFilePrefix ?? dictionary.selectedFilePrefix;
+      const noFileText = fileLabel.dataset.noFileText ?? dictionary.noFileSelected;
+      fileLabel.textContent = file ? `${selectedFilePrefix}: ${file.name}` : noFileText;
+    });
   });
 
   document.querySelectorAll<HTMLElement>('[data-role-value]').forEach((element) => {

@@ -92,7 +92,7 @@ type TranslationKey =
   | 'addAction'
   | 'messageAction'
   | 'noOtherUsersMessage'
-  | 'chatWithPrefix'
+  | 'chatWithTemplate'
   | 'descriptionLabel'
   | 'roleLabel'
   | 'nameLabel'
@@ -108,9 +108,8 @@ type TranslationKey =
   | 'contactModalDescription'
   | 'messageLabel'
   | 'contactMessagePlaceholder'
-  | 'mustBeAuthenticatedPrefix'
+  | 'mustBeAuthenticatedMessage'
   | 'authenticatedLabel'
-  | 'mustBeAuthenticatedSuffix'
   | 'roleStandard'
   | 'roleModerator';
 
@@ -208,7 +207,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: 'Aggiungi',
     messageAction: 'Messaggio',
     noOtherUsersMessage: 'Nessun altro utente disponibile.',
-    chatWithPrefix: 'Chat con',
+    chatWithTemplate: 'Chat con {username}',
     descriptionLabel: 'Descrizione:',
     roleLabel: 'Ruolo:',
     nameLabel: 'Nome:',
@@ -224,9 +223,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: "Invia un messaggio privato all'amministratore della piattaforma.",
     messageLabel: 'Messaggio',
     contactMessagePlaceholder: 'Scrivi il tuo messaggio...',
-    mustBeAuthenticatedPrefix: 'Devi essere',
+    mustBeAuthenticatedMessage: 'Devi essere {link} per inviare un messaggio.',
     authenticatedLabel: 'autenticato',
-    mustBeAuthenticatedSuffix: 'per inviare un messaggio.',
     roleStandard: 'Utente standard',
     roleModerator: 'Moderatore',
   },
@@ -319,7 +317,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: 'Add',
     messageAction: 'Message',
     noOtherUsersMessage: 'No other users available.',
-    chatWithPrefix: 'Chat with',
+    chatWithTemplate: 'Chat with {username}',
     descriptionLabel: 'Description:',
     roleLabel: 'Role:',
     nameLabel: 'Name:',
@@ -335,9 +333,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: "Send a private message to the platform administrator.",
     messageLabel: 'Message',
     contactMessagePlaceholder: 'Write your message...',
-    mustBeAuthenticatedPrefix: 'You must be',
+    mustBeAuthenticatedMessage: 'You must be {link} to send a message.',
     authenticatedLabel: 'authenticated',
-    mustBeAuthenticatedSuffix: 'to send a message.',
     roleStandard: 'Standard user',
     roleModerator: 'Moderator',
   },
@@ -430,7 +427,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: 'Añadir',
     messageAction: 'Mensaje',
     noOtherUsersMessage: 'No hay otros usuarios disponibles.',
-    chatWithPrefix: 'Chat con',
+    chatWithTemplate: 'Chat con {username}',
     descriptionLabel: 'Descripción:',
     roleLabel: 'Rol:',
     nameLabel: 'Nombre:',
@@ -446,9 +443,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: 'Envía un mensaje privado al administrador de la plataforma.',
     messageLabel: 'Mensaje',
     contactMessagePlaceholder: 'Escribe tu mensaje...',
-    mustBeAuthenticatedPrefix: 'Debes estar',
+    mustBeAuthenticatedMessage: 'Debes estar {link} para enviar un mensaje.',
     authenticatedLabel: 'autenticado',
-    mustBeAuthenticatedSuffix: 'para enviar un mensaje.',
     roleStandard: 'Usuario estándar',
     roleModerator: 'Moderador',
   },
@@ -541,7 +537,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: 'Ajouter',
     messageAction: 'Message',
     noOtherUsersMessage: 'Aucun autre utilisateur disponible.',
-    chatWithPrefix: 'Discussion avec',
+    chatWithTemplate: 'Discussion avec {username}',
     descriptionLabel: 'Description :',
     roleLabel: 'Rôle :',
     nameLabel: 'Nom :',
@@ -557,9 +553,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: "Envoyez un message privé à l'administrateur de la plateforme.",
     messageLabel: 'Message',
     contactMessagePlaceholder: 'Écrivez votre message...',
-    mustBeAuthenticatedPrefix: 'Vous devez être',
+    mustBeAuthenticatedMessage: 'Vous devez être {link} pour envoyer un message.',
     authenticatedLabel: 'authentifié',
-    mustBeAuthenticatedSuffix: 'pour envoyer un message.',
     roleStandard: 'Utilisateur standard',
     roleModerator: 'Modérateur',
   },
@@ -652,7 +647,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: 'Hinzufügen',
     messageAction: 'Nachricht',
     noOtherUsersMessage: 'Keine anderen Nutzer verfügbar.',
-    chatWithPrefix: 'Chat mit',
+    chatWithTemplate: 'Chat mit {username}',
     descriptionLabel: 'Beschreibung:',
     roleLabel: 'Rolle:',
     nameLabel: 'Name:',
@@ -668,9 +663,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: 'Sende eine private Nachricht an den Administrator der Plattform.',
     messageLabel: 'Nachricht',
     contactMessagePlaceholder: 'Schreibe deine Nachricht...',
-    mustBeAuthenticatedPrefix: 'Du musst',
+    mustBeAuthenticatedMessage: 'Du musst {link} um eine Nachricht zu senden.',
     authenticatedLabel: 'angemeldet sein',
-    mustBeAuthenticatedSuffix: 'um eine Nachricht zu senden.',
     roleStandard: 'Standardnutzer',
     roleModerator: 'Moderator',
   },
@@ -763,7 +757,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     addAction: '添加',
     messageAction: '消息',
     noOtherUsersMessage: '没有其他可用用户。',
-    chatWithPrefix: '与',
+    chatWithTemplate: '与 {username} 聊天',
     descriptionLabel: '描述：',
     roleLabel: '角色：',
     nameLabel: '姓名：',
@@ -779,9 +773,8 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactModalDescription: '向平台管理员发送私信。',
     messageLabel: '消息',
     contactMessagePlaceholder: '输入你的消息...',
-    mustBeAuthenticatedPrefix: '你必须先',
+    mustBeAuthenticatedMessage: '你必须先{link}才能发送消息。',
     authenticatedLabel: '登录',
-    mustBeAuthenticatedSuffix: '才能发送消息。',
     roleStandard: '普通用户',
     roleModerator: '版主',
   },
@@ -847,6 +840,10 @@ function applyLanguageToUi(language: LanguageCode) {
     }
     if (role === 'standard') {
       element.textContent = dictionary.roleStandard;
+      return;
+    }
+    if (role) {
+      console.warn(`Unknown role value for translation: ${role}`);
     }
   });
 
@@ -855,7 +852,27 @@ function applyLanguageToUi(language: LanguageCode) {
     if (!username) {
       return;
     }
-    element.textContent = `${dictionary.chatWithPrefix} ${username}`;
+    element.textContent = dictionary.chatWithTemplate.replace('{username}', username);
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-i18n-template-key]').forEach((element) => {
+    const key = element.dataset.i18nTemplateKey;
+    if (!key || !isTranslationKey(key)) {
+      return;
+    }
+
+    const template = dictionary[key];
+    const link = element.querySelector<HTMLAnchorElement>('[data-auth-link]');
+    if (!link || !template.includes('{link}')) {
+      element.textContent = template;
+      return;
+    }
+
+    const [prefix = '', suffix = ''] = template.split('{link}');
+    const translatedLink = link.cloneNode(true) as HTMLAnchorElement;
+    translatedLink.textContent = dictionary.authenticatedLabel;
+
+    element.replaceChildren(document.createTextNode(prefix), translatedLink, document.createTextNode(suffix));
   });
 
   document.querySelectorAll<HTMLButtonElement>('[data-like-button]').forEach((button) => {

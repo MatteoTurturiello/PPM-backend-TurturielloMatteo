@@ -7,6 +7,10 @@ from PPMbackend.upload_validators import validate_small_image
 from .models import User
 
 
+class ProfileImageClearableFileInput(forms.ClearableFileInput):
+    template_name = 'widgets/profile_image_input.html'
+
+
 class BannedAwareAuthenticationForm(AuthenticationForm):
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -32,11 +36,11 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'bio', 'password1', 'password2')
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Scegli un username'}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'Nome'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Cognome'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'email@esempio.it'}),
-            'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Racconta qualcosa di te'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Scegli un username', 'data-i18n-placeholder': 'usernamePlaceholder'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Nome', 'data-i18n-placeholder': 'firstNamePlaceholder'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Cognome', 'data-i18n-placeholder': 'lastNamePlaceholder'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'email@esempio.it', 'data-i18n-placeholder': 'emailPlaceholder'}),
+            'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Racconta qualcosa di te', 'data-i18n-placeholder': 'bioPlaceholder'}),
         }
 
 
@@ -45,10 +49,11 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email', 'bio', 'profile_image')
         widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'Nome'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Cognome'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'email@esempio.it'}),
-            'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Parla un po\' di te'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Nome', 'data-i18n-placeholder': 'firstNamePlaceholder'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Cognome', 'data-i18n-placeholder': 'lastNamePlaceholder'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'email@esempio.it', 'data-i18n-placeholder': 'emailPlaceholder'}),
+            'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Racconta qualcosa di te', 'data-i18n-placeholder': 'bioPlaceholder'}),
+            'profile_image': ProfileImageClearableFileInput(),
         }
 
     def clean_profile_image(self):

@@ -1,0 +1,10 @@
+{% if widget.is_initial %}
+<span data-i18n-key="currentFileLabel">Attualmente</span>:
+<a href="{{ widget.value.url }}">{{ widget.value }}</a>
+{% if not widget.required %}
+<input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" {% if widget.attrs.disabled %} disabled{% endif %}{% if widget.attrs.checked %} checked{% endif %}>
+<label for="{{ widget.checkbox_id }}" data-i18n-key="removePhotoAction">Rimuovi foto</label>
+{% endif %}<br>
+<span data-i18n-key="changeFileLabel">Modifica</span>:
+{% endif %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>

@@ -123,13 +123,13 @@
     <!-- Privacy modal -->
     <dialog id="privacy-modal" class="modal-dialog">
         <div class="modal-dialog__inner">
-            <h2>Privacy Policy</h2>
-            <p>Questa piattaforma raccoglie i dati personali forniti durante la registrazione (username, password) al solo scopo di fornire il servizio di social network.</p>
-            <p>I dati non vengono ceduti a terzi né utilizzati per scopi commerciali. Le immagini caricate sono visibili agli altri utenti registrati.</p>
-            <p>Hai diritto di accedere, modificare o cancellare i tuoi dati in qualsiasi momento tramite le impostazioni del profilo.</p>
-            <p>Per qualsiasi richiesta relativa alla privacy, utilizza la funzione "Contact us".</p>
+            <h2 data-i18n-key="privacyModalTitle">Privacy Policy</h2>
+            <p data-i18n-key="privacyModalParagraph1">Questa piattaforma raccoglie i dati personali forniti durante la registrazione (username, password) al solo scopo di fornire il servizio di social network.</p>
+            <p data-i18n-key="privacyModalParagraph2">I dati non vengono ceduti a terzi né utilizzati per scopi commerciali. Le immagini caricate sono visibili agli altri utenti registrati.</p>
+            <p data-i18n-key="privacyModalParagraph3">Hai diritto di accedere, modificare o cancellare i tuoi dati in qualsiasi momento tramite le impostazioni del profilo.</p>
+            <p data-i18n-key="privacyModalParagraph4">Per qualsiasi richiesta relativa alla privacy, utilizza la funzione "Contact us".</p>
             <div class="modal-dialog__actions">
-                <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()">Chiudi</button>
+                <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()" data-i18n-key="closeAction">Chiudi</button>
             </div>
         </div>
     </dialog>
@@ -137,23 +137,23 @@
     <!-- Contact us modal -->
     <dialog id="contact-modal" class="modal-dialog">
         <div class="modal-dialog__inner">
-            <h2>Contatta l'admin</h2>
-            <p class="section-copy">Invia un messaggio privato all'amministratore della piattaforma.</p>
+            <h2 data-i18n-key="contactModalTitle">Contatta l'admin</h2>
+            <p class="section-copy" data-i18n-key="contactModalDescription">Invia un messaggio privato all'amministratore della piattaforma.</p>
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'social:contact-admin' %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                    <label class="form-label" for="contact-content">Messaggio</label>
-                    <textarea id="contact-content" name="content" rows="4" maxlength="1000" placeholder="Scrivi il tuo messaggio..." required></textarea>
+                    <label class="form-label" for="contact-content" data-i18n-key="messageLabel">Messaggio</label>
+                    <textarea id="contact-content" name="content" rows="4" maxlength="1000" placeholder="Scrivi il tuo messaggio..." data-i18n-placeholder="contactMessagePlaceholder" required></textarea>
                     <div class="modal-dialog__actions">
-                        <button class="pill-link pill-link--solid" type="submit">Invia</button>
-                        <button type="button" class="text-button" onclick="this.closest('dialog').close()">Annulla</button>
+                        <button class="pill-link pill-link--solid" type="submit" data-i18n-key="sendAction">Invia</button>
+                        <button type="button" class="text-button" onclick="this.closest('dialog').close()" data-i18n-key="cancelAction">Annulla</button>
                     </div>
                 </form>
             {% else %}
-                <p>Devi essere <a href="{% url 'login' %}">autenticato</a> per inviare un messaggio.</p>
+                <p><span data-i18n-key="mustBeAuthenticatedPrefix">Devi essere</span> <a href="{% url 'login' %}" data-i18n-key="authenticatedLabel">autenticato</a> <span data-i18n-key="mustBeAuthenticatedSuffix">per inviare un messaggio.</span></p>
                 <div class="modal-dialog__actions">
-                    <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()">Chiudi</button>
+                    <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()" data-i18n-key="closeAction">Chiudi</button>
                 </div>
             {% endif %}
         </div>

@@ -39,6 +39,7 @@ class MessageForm(forms.ModelForm):
                 attrs={
                     'rows': 3,
                     'placeholder': 'Scrivi un messaggio o aggiungi una emoji 💬',
+                    'data-i18n-placeholder': 'chatMessagePlaceholder',
                 }
             ),
         }

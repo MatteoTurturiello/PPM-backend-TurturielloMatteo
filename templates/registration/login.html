@@ -2,9 +2,10 @@
 {% block content %}
 <section class="auth-card">
     <div class="auth-card__intro">
-        <p class="eyebrow">Bentornato</p>
-        <h1>Accedi al tuo social.</h1>
-        <p class="section-copy">Rientra nel feed, controlla le chat e pubblica nuovi contenuti in pochi click.</p>
+        <p class="eyebrow" data-i18n-key="loginEyebrow">Bentornato</p>
+        <h1 data-i18n-key="loginTitle">Accedi al tuo social.</h1>
+        <p class="section-copy" data-i18n-key="loginSubtitle">Rientra nel feed, controlla le chat e pubblica nuovi contenuti in pochi click.</p>
+        <button class="text-button auth-card__lang-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
     </div>
     <form method="post" class="auth-form">
         {% csrf_token %}
@@ -17,7 +18,7 @@
         {{ form.password }}
         {% if form.password.errors %}<div class="form-errors">{{ form.password.errors }}</div>{% endif %}
 
-        <button class="pill-link pill-link--solid auth-form__submit" type="submit">Accedi</button>
+        <button class="pill-link pill-link--solid auth-form__submit" type="submit" data-i18n-key="loginAction">Accedi</button>
         <p class="helper-text">Non hai un account? <a class="text-button" href="{% url 'accounts:signup' %}">Registrati ora</a></p>
     </form>
 </section>

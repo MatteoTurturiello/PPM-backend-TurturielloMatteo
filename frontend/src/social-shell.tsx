@@ -67,7 +67,25 @@ type TranslationKey =
   | 'emailLabel'
   | 'bioLabel'
   | 'profilePhotoLabel'
-  | 'saveProfileAction';
+  | 'saveProfileAction'
+  | 'chatEyebrow'
+  | 'chatDescription'
+  | 'deleteChatAction'
+  | 'chatNoMessagesPrefix'
+  | 'maxPhotoSize'
+  | 'confirmPasswordLabel'
+  | 'loginAction'
+  | 'createAccountAction'
+  | 'postContentPlaceholder'
+  | 'newMessageLabel'
+  | 'sendAction'
+  | 'openProfileAction'
+  | 'loginEyebrow'
+  | 'loginTitle'
+  | 'loginSubtitle'
+  | 'signupEyebrow'
+  | 'signupTitle'
+  | 'signupSubtitle';
 
 const PANELS = ['settings', 'messages'] as const;
 const LANGUAGE_STORAGE_KEY = 'ppm-language';
@@ -139,6 +157,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: 'Bio',
     profilePhotoLabel: 'Foto profilo',
     saveProfileAction: 'Salva profilo',
+    chatEyebrow: 'Messaggi',
+    chatDescription: 'La chat resta disponibile nel menu messaggi finché non la elimini.',
+    deleteChatAction: 'Elimina chat',
+    chatNoMessagesPrefix: 'Nessun messaggio ancora. Inizia la conversazione con',
+    maxPhotoSize: 'Massimo 450 KB e 1600×1600 px.',
+    confirmPasswordLabel: 'Conferma password',
+    loginAction: 'Accedi',
+    createAccountAction: 'Crea account',
+    postContentPlaceholder: 'Condividi un pensiero, una foto o una emoji ✨',
+    newMessageLabel: 'Nuovo messaggio',
+    sendAction: 'Invia',
+    openProfileAction: 'Apri profilo',
+    loginEyebrow: 'Bentornato',
+    loginTitle: 'Accedi al tuo social.',
+    loginSubtitle: 'Rientra nel feed, controlla le chat e pubblica nuovi contenuti in pochi click.',
+    signupEyebrow: 'Nuovo account',
+    signupTitle: 'Crea il tuo profilo.',
+    signupSubtitle: 'Registrati per entrare nel feed, aggiungere amici, lasciare like e iniziare a chattare.',
   },
   en: {
     settingsTitle: '⚙️ Settings',
@@ -205,6 +241,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: 'Bio',
     profilePhotoLabel: 'Profile photo',
     saveProfileAction: 'Save profile',
+    chatEyebrow: 'Messages',
+    chatDescription: 'The chat remains available in the messages menu until you delete it.',
+    deleteChatAction: 'Delete chat',
+    chatNoMessagesPrefix: 'No messages yet. Start the conversation with',
+    maxPhotoSize: 'Maximum 450 KB and 1600×1600 px.',
+    confirmPasswordLabel: 'Confirm password',
+    loginAction: 'Sign in',
+    createAccountAction: 'Create account',
+    postContentPlaceholder: 'Share a thought, a photo or an emoji ✨',
+    newMessageLabel: 'New message',
+    sendAction: 'Send',
+    openProfileAction: 'Open profile',
+    loginEyebrow: 'Welcome back',
+    loginTitle: 'Sign in to your social.',
+    loginSubtitle: 'Jump back into the feed, check your chats and post new content in a few clicks.',
+    signupEyebrow: 'New account',
+    signupTitle: 'Create your profile.',
+    signupSubtitle: 'Register to join the feed, add friends, leave likes and start chatting.',
   },
   es: {
     settingsTitle: '⚙️ Configuración',
@@ -271,6 +325,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: 'Biografía',
     profilePhotoLabel: 'Foto de perfil',
     saveProfileAction: 'Guardar perfil',
+    chatEyebrow: 'Mensajes',
+    chatDescription: 'El chat permanece disponible en el menú de mensajes hasta que lo elimines.',
+    deleteChatAction: 'Eliminar chat',
+    chatNoMessagesPrefix: 'Aún no hay mensajes. Empieza la conversación con',
+    maxPhotoSize: 'Máximo 450 KB y 1600×1600 px.',
+    confirmPasswordLabel: 'Confirmar contraseña',
+    loginAction: 'Iniciar sesión',
+    createAccountAction: 'Crear cuenta',
+    postContentPlaceholder: 'Comparte un pensamiento, una foto o un emoji ✨',
+    newMessageLabel: 'Nuevo mensaje',
+    sendAction: 'Enviar',
+    openProfileAction: 'Abrir perfil',
+    loginEyebrow: 'Bienvenido de nuevo',
+    loginTitle: 'Accede a tu red social.',
+    loginSubtitle: 'Vuelve al feed, revisa los chats y publica nuevo contenido en pocos clics.',
+    signupEyebrow: 'Nueva cuenta',
+    signupTitle: 'Crea tu perfil.',
+    signupSubtitle: 'Regístrate para unirte al feed, añadir amigos, dar me gusta y empezar a chatear.',
   },
   fr: {
     settingsTitle: '⚙️ Paramètres',
@@ -337,6 +409,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: 'Bio',
     profilePhotoLabel: 'Photo de profil',
     saveProfileAction: 'Enregistrer le profil',
+    chatEyebrow: 'Messages',
+    chatDescription: "La discussion reste disponible dans le menu messages jusqu'à ce que vous la supprimiez.",
+    deleteChatAction: 'Supprimer la discussion',
+    chatNoMessagesPrefix: "Aucun message pour l'instant. Commencez la conversation avec",
+    maxPhotoSize: 'Maximum 450 Ko et 1600×1600 px.',
+    confirmPasswordLabel: 'Confirmer le mot de passe',
+    loginAction: 'Se connecter',
+    createAccountAction: 'Créer un compte',
+    postContentPlaceholder: 'Partagez une pensée, une photo ou un emoji ✨',
+    newMessageLabel: 'Nouveau message',
+    sendAction: 'Envoyer',
+    openProfileAction: 'Ouvrir le profil',
+    loginEyebrow: 'Bon retour',
+    loginTitle: 'Connectez-vous à votre réseau.',
+    loginSubtitle: 'Retournez au fil, consultez vos discussions et publiez de nouveaux contenus en quelques clics.',
+    signupEyebrow: 'Nouveau compte',
+    signupTitle: 'Créez votre profil.',
+    signupSubtitle: "Inscrivez-vous pour rejoindre le fil, ajouter des amis, laisser des likes et commencer à discuter.",
   },
   de: {
     settingsTitle: '⚙️ Einstellungen',
@@ -403,6 +493,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: 'Biografie',
     profilePhotoLabel: 'Profilbild',
     saveProfileAction: 'Profil speichern',
+    chatEyebrow: 'Nachrichten',
+    chatDescription: 'Der Chat ist im Nachrichtenmenü verfügbar, bis du ihn löschst.',
+    deleteChatAction: 'Chat löschen',
+    chatNoMessagesPrefix: 'Noch keine Nachrichten. Starte die Unterhaltung mit',
+    maxPhotoSize: 'Maximal 450 KB und 1600×1600 px.',
+    confirmPasswordLabel: 'Passwort bestätigen',
+    loginAction: 'Anmelden',
+    createAccountAction: 'Konto erstellen',
+    postContentPlaceholder: 'Teile einen Gedanken, ein Foto oder ein Emoji ✨',
+    newMessageLabel: 'Neue Nachricht',
+    sendAction: 'Senden',
+    openProfileAction: 'Profil öffnen',
+    loginEyebrow: 'Willkommen zurück',
+    loginTitle: 'Melde dich in deinem Netzwerk an.',
+    loginSubtitle: 'Kehre zum Feed zurück, prüfe deine Chats und veröffentliche neue Inhalte mit wenigen Klicks.',
+    signupEyebrow: 'Neues Konto',
+    signupTitle: 'Erstelle dein Profil.',
+    signupSubtitle: 'Registriere dich, um dem Feed beizutreten, Freunde hinzuzufügen, Likes zu geben und zu chatten.',
   },
   zh: {
     settingsTitle: '⚙️ 设置',
@@ -469,6 +577,24 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     bioLabel: '个人简介',
     profilePhotoLabel: '头像',
     saveProfileAction: '保存资料',
+    chatEyebrow: '消息',
+    chatDescription: '聊天记录在消息菜单中保持可用，直到你删除它。',
+    deleteChatAction: '删除聊天',
+    chatNoMessagesPrefix: '还没有消息。开始与',
+    maxPhotoSize: '最大 450 KB，1600×1600 像素。',
+    confirmPasswordLabel: '确认密码',
+    loginAction: '登录',
+    createAccountAction: '创建账户',
+    postContentPlaceholder: '分享一个想法、照片或表情 ✨',
+    newMessageLabel: '新消息',
+    sendAction: '发送',
+    openProfileAction: '打开资料',
+    loginEyebrow: '欢迎回来',
+    loginTitle: '登录你的社交网络。',
+    loginSubtitle: '回到动态，查看聊天，几步发布新内容。',
+    signupEyebrow: '新账户',
+    signupTitle: '创建你的个人资料。',
+    signupSubtitle: '注册加入动态，添加朋友，点赞并开始聊天。',
   },
 };
 
@@ -496,7 +622,7 @@ function getSavedLanguage(): LanguageCode {
   if (stored && LANGUAGES.includes(stored as LanguageCode)) {
     return stored as LanguageCode;
   }
-  return 'it';
+  return 'en';
 }
 
 function isTranslationKey(value: string): value is TranslationKey {
@@ -514,6 +640,14 @@ function applyLanguageToUi(language: LanguageCode) {
       return;
     }
     element.textContent = dictionary[i18nKey];
+  });
+
+  document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-i18n-placeholder]').forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    if (!key || !isTranslationKey(key)) {
+      return;
+    }
+    element.placeholder = dictionary[key];
   });
 
   document.querySelectorAll<HTMLButtonElement>('[data-like-button]').forEach((button) => {
@@ -558,7 +692,7 @@ async function translateText(text: string, targetLanguage: LanguageCode): Promis
 
 function ShellController() {
   const [activePanel, setActivePanel] = useState<PanelName>(null);
-  const [language, setLanguage] = useState<LanguageCode>('it');
+  const [language, setLanguage] = useState<LanguageCode>('en');
 
   useEffect(() => {
     syncPanelState(activePanel);

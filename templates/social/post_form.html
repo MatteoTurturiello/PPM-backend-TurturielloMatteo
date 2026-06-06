@@ -9,7 +9,7 @@
             <p class="section-copy" data-i18n-key="newPostDescription">Aggiungi testo, emoji e una foto al tuo post.</p>
         {% else %}
             <h1>{{ page_title }}</h1>
-            <p class="section-copy">Aggiungi testo, emoji e una foto al tuo post.</p>
+            <p class="section-copy" data-i18n-key="newPostDescription">Aggiungi testo, emoji e una foto al tuo post.</p>
         {% endif %}
     </div>
 </section>
@@ -37,7 +37,7 @@
 
     <label class="form-label" for="{{ form.image.id_for_label }}" data-i18n-key="postPhotoLabel">Foto del post</label>
     {{ form.image }}
-    <p class="helper-text">Massimo 450 KB e 1600x1600 px.</p>
+    <p class="helper-text" data-i18n-key="maxPhotoSize">Massimo 450 KB e 1600×1600 px.</p>
     <p class="helper-text" data-selected-file data-i18n-key="noFileSelected">Nessun file selezionato.</p>
     {% if form.image.errors %}<div class="form-errors">{{ form.image.errors }}</div>{% endif %}
 

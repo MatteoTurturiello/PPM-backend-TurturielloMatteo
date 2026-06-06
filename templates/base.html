@@ -177,9 +177,8 @@
         </div>
     </dialog>
 
-    {% if user.is_authenticated %}
-        <script src="{% static 'js/social-shell.js' %}" defer></script>
-    {% endif %}
+    <div id="social-shell-controls"></div>
+    <script src="{% static 'js/social-shell.js' %}" defer></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

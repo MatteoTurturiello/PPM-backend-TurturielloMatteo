@@ -110,6 +110,7 @@ type TranslationKey =
   | 'contactMessagePlaceholder'
   | 'mustBeAuthenticatedMessage'
   | 'authenticatedLinkLabel'
+  | 'unknownRoleLabel'
   | 'roleStandard'
   | 'roleModerator';
 
@@ -225,6 +226,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: 'Scrivi il tuo messaggio...',
     mustBeAuthenticatedMessage: 'Devi essere {link} per inviare un messaggio.',
     authenticatedLinkLabel: 'autenticato',
+    unknownRoleLabel: 'Ruolo non disponibile',
     roleStandard: 'Utente standard',
     roleModerator: 'Moderatore',
   },
@@ -335,6 +337,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: 'Write your message...',
     mustBeAuthenticatedMessage: 'You must be {link} to send a message.',
     authenticatedLinkLabel: 'authenticated',
+    unknownRoleLabel: 'Role unavailable',
     roleStandard: 'Standard user',
     roleModerator: 'Moderator',
   },
@@ -445,6 +448,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: 'Escribe tu mensaje...',
     mustBeAuthenticatedMessage: 'Debes estar {link} para enviar un mensaje.',
     authenticatedLinkLabel: 'autenticado',
+    unknownRoleLabel: 'Rol no disponible',
     roleStandard: 'Usuario estándar',
     roleModerator: 'Moderador',
   },
@@ -555,6 +559,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: 'Écrivez votre message...',
     mustBeAuthenticatedMessage: 'Vous devez être {link} pour envoyer un message.',
     authenticatedLinkLabel: 'authentifié',
+    unknownRoleLabel: 'Rôle indisponible',
     roleStandard: 'Utilisateur standard',
     roleModerator: 'Modérateur',
   },
@@ -665,6 +670,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: 'Schreibe deine Nachricht...',
     mustBeAuthenticatedMessage: 'Du musst {link} um eine Nachricht zu senden.',
     authenticatedLinkLabel: 'angemeldet sein',
+    unknownRoleLabel: 'Rolle nicht verfügbar',
     roleStandard: 'Standardnutzer',
     roleModerator: 'Moderator',
   },
@@ -775,6 +781,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     contactMessagePlaceholder: '输入你的消息...',
     mustBeAuthenticatedMessage: '你必须先{link}才能发送消息。',
     authenticatedLinkLabel: '登录',
+    unknownRoleLabel: '角色不可用',
     roleStandard: '普通用户',
     roleModerator: '版主',
   },
@@ -844,7 +851,7 @@ function applyLanguageToUi(language: LanguageCode) {
     }
     if (role) {
       console.warn(`Unknown role value for translation: ${role}`);
-      element.textContent = role;
+      element.textContent = dictionary.unknownRoleLabel;
     }
   });
 

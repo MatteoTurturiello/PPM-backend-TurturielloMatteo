@@ -31,3 +31,14 @@ class ProfileFormTests(TestCase):
 
         self.assertFalse(form.is_valid())
         self.assertIn('profile_image', form.errors)
+
+
+class ProfileUpdateViewTests(TestCase):
+    def test_profile_edit_page_renders_successfully(self):
+        user = User.objects.create_user(username='view_user', password='testpass123')
+        self.client.force_login(user)
+
+        response = self.client.get(f'/accounts/profile/{user.pk}/edit/', HTTP_HOST='localhost')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'data-i18n-key="chooseFileAction"')

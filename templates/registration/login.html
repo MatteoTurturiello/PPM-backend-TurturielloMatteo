@@ -10,11 +10,11 @@
     <form method="post" class="auth-form">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <label class="form-label" for="id_username">Username</label>
+        <label class="form-label" for="id_username" data-i18n-key="usernameLabel">Username</label>
         {{ form.username }}
         {% if form.username.errors %}<div class="form-errors">{{ form.username.errors }}</div>{% endif %}
 
-        <label class="form-label" for="id_password">Password</label>
+        <label class="form-label" for="id_password" data-i18n-key="passwordLabel">Password</label>
         {{ form.password }}
         {% if form.password.errors %}<div class="form-errors">{{ form.password.errors }}</div>{% endif %}
 

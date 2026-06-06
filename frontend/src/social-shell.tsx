@@ -85,7 +85,34 @@ type TranslationKey =
   | 'loginSubtitle'
   | 'signupEyebrow'
   | 'signupTitle'
-  | 'signupSubtitle';
+  | 'signupSubtitle'
+  | 'availableUsersTitle'
+  | 'availableUsersDescription'
+  | 'profileAction'
+  | 'addAction'
+  | 'messageAction'
+  | 'noOtherUsersMessage'
+  | 'chatWithTemplate'
+  | 'descriptionLabel'
+  | 'roleLabel'
+  | 'nameLabel'
+  | 'emailLabelWithColon'
+  | 'notAvailableLabel'
+  | 'chatMessagePlaceholder'
+  | 'privacyModalTitle'
+  | 'privacyModalParagraph1'
+  | 'privacyModalParagraph2'
+  | 'privacyModalParagraph3'
+  | 'privacyModalParagraph4'
+  | 'contactModalTitle'
+  | 'contactModalDescription'
+  | 'messageLabel'
+  | 'contactMessagePlaceholder'
+  | 'mustBeAuthenticatedMessage'
+  | 'authenticatedLinkLabel'
+  | 'unknownRoleLabel'
+  | 'roleStandard'
+  | 'roleModerator';
 
 const PANELS = ['settings', 'messages'] as const;
 const LANGUAGE_STORAGE_KEY = 'ppm-language';
@@ -175,6 +202,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: 'Nuovo account',
     signupTitle: 'Crea il tuo profilo.',
     signupSubtitle: 'Registrati per entrare nel feed, aggiungere amici, lasciare like e iniziare a chattare.',
+    availableUsersTitle: 'Utenti disponibili',
+    availableUsersDescription: 'Scopri profili, invia richieste di amicizia e apri nuove chat.',
+    profileAction: 'Profilo',
+    addAction: 'Aggiungi',
+    messageAction: 'Messaggio',
+    noOtherUsersMessage: 'Nessun altro utente disponibile.',
+    chatWithTemplate: 'Chat con {username}',
+    descriptionLabel: 'Descrizione:',
+    roleLabel: 'Ruolo:',
+    nameLabel: 'Nome:',
+    emailLabelWithColon: 'Email:',
+    notAvailableLabel: 'Non disponibile',
+    chatMessagePlaceholder: 'Scrivi un messaggio o aggiungi una emoji 💬',
+    privacyModalTitle: 'Privacy Policy',
+    privacyModalParagraph1: 'Questa piattaforma raccoglie i dati personali forniti durante la registrazione (username, password) al solo scopo di fornire il servizio di social network.',
+    privacyModalParagraph2: 'I dati non vengono ceduti a terzi né utilizzati per scopi commerciali. Le immagini caricate sono visibili agli altri utenti registrati.',
+    privacyModalParagraph3: 'Hai diritto di accedere, modificare o cancellare i tuoi dati in qualsiasi momento tramite le impostazioni del profilo.',
+    privacyModalParagraph4: 'Per qualsiasi richiesta relativa alla privacy, utilizza la funzione "Contact us".',
+    contactModalTitle: "Contatta l'admin",
+    contactModalDescription: "Invia un messaggio privato all'amministratore della piattaforma.",
+    messageLabel: 'Messaggio',
+    contactMessagePlaceholder: 'Scrivi il tuo messaggio...',
+    mustBeAuthenticatedMessage: 'Devi essere {link} per inviare un messaggio.',
+    authenticatedLinkLabel: 'autenticato',
+    unknownRoleLabel: 'Ruolo non disponibile',
+    roleStandard: 'Utente standard',
+    roleModerator: 'Moderatore',
   },
   en: {
     settingsTitle: '⚙️ Settings',
@@ -259,6 +313,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: 'New account',
     signupTitle: 'Create your profile.',
     signupSubtitle: 'Register to join the feed, add friends, leave likes and start chatting.',
+    availableUsersTitle: 'Available users',
+    availableUsersDescription: 'Discover profiles, send friend requests and open new chats.',
+    profileAction: 'Profile',
+    addAction: 'Add',
+    messageAction: 'Message',
+    noOtherUsersMessage: 'No other users available.',
+    chatWithTemplate: 'Chat with {username}',
+    descriptionLabel: 'Description:',
+    roleLabel: 'Role:',
+    nameLabel: 'Name:',
+    emailLabelWithColon: 'Email:',
+    notAvailableLabel: 'Not available',
+    chatMessagePlaceholder: 'Write a message or add an emoji 💬',
+    privacyModalTitle: 'Privacy Policy',
+    privacyModalParagraph1: 'This platform collects personal data provided during registration (username, password) only to provide the social network service.',
+    privacyModalParagraph2: 'Data is not shared with third parties and is not used for commercial purposes. Uploaded images are visible to other registered users.',
+    privacyModalParagraph3: 'You can access, edit or delete your data at any time through profile settings.',
+    privacyModalParagraph4: 'For any privacy-related request, use the "Contact us" function.',
+    contactModalTitle: 'Contact admin',
+    contactModalDescription: "Send a private message to the platform administrator.",
+    messageLabel: 'Message',
+    contactMessagePlaceholder: 'Write your message...',
+    mustBeAuthenticatedMessage: 'You must be {link} to send a message.',
+    authenticatedLinkLabel: 'authenticated',
+    unknownRoleLabel: 'Role unavailable',
+    roleStandard: 'Standard user',
+    roleModerator: 'Moderator',
   },
   es: {
     settingsTitle: '⚙️ Configuración',
@@ -343,6 +424,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: 'Nueva cuenta',
     signupTitle: 'Crea tu perfil.',
     signupSubtitle: 'Regístrate para unirte al feed, añadir amigos, dar me gusta y empezar a chatear.',
+    availableUsersTitle: 'Usuarios disponibles',
+    availableUsersDescription: 'Descubre perfiles, envía solicitudes de amistad y abre nuevos chats.',
+    profileAction: 'Perfil',
+    addAction: 'Añadir',
+    messageAction: 'Mensaje',
+    noOtherUsersMessage: 'No hay otros usuarios disponibles.',
+    chatWithTemplate: 'Chat con {username}',
+    descriptionLabel: 'Descripción:',
+    roleLabel: 'Rol:',
+    nameLabel: 'Nombre:',
+    emailLabelWithColon: 'Correo electrónico:',
+    notAvailableLabel: 'No disponible',
+    chatMessagePlaceholder: 'Escribe un mensaje o añade un emoji 💬',
+    privacyModalTitle: 'Política de privacidad',
+    privacyModalParagraph1: 'Esta plataforma recopila los datos personales proporcionados durante el registro (usuario y contraseña) únicamente para ofrecer el servicio de red social.',
+    privacyModalParagraph2: 'Los datos no se ceden a terceros ni se usan con fines comerciales. Las imágenes subidas son visibles para otros usuarios registrados.',
+    privacyModalParagraph3: 'Puedes acceder, editar o eliminar tus datos en cualquier momento desde la configuración del perfil.',
+    privacyModalParagraph4: 'Para cualquier solicitud relacionada con la privacidad, usa la función "Contáctanos".',
+    contactModalTitle: 'Contactar al admin',
+    contactModalDescription: 'Envía un mensaje privado al administrador de la plataforma.',
+    messageLabel: 'Mensaje',
+    contactMessagePlaceholder: 'Escribe tu mensaje...',
+    mustBeAuthenticatedMessage: 'Debes estar {link} para enviar un mensaje.',
+    authenticatedLinkLabel: 'autenticado',
+    unknownRoleLabel: 'Rol no disponible',
+    roleStandard: 'Usuario estándar',
+    roleModerator: 'Moderador',
   },
   fr: {
     settingsTitle: '⚙️ Paramètres',
@@ -427,6 +535,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: 'Nouveau compte',
     signupTitle: 'Créez votre profil.',
     signupSubtitle: "Inscrivez-vous pour rejoindre le fil, ajouter des amis, laisser des likes et commencer à discuter.",
+    availableUsersTitle: 'Utilisateurs disponibles',
+    availableUsersDescription: 'Découvrez des profils, envoyez des demandes d’amitié et ouvrez de nouvelles discussions.',
+    profileAction: 'Profil',
+    addAction: 'Ajouter',
+    messageAction: 'Message',
+    noOtherUsersMessage: 'Aucun autre utilisateur disponible.',
+    chatWithTemplate: 'Discussion avec {username}',
+    descriptionLabel: 'Description :',
+    roleLabel: 'Rôle :',
+    nameLabel: 'Nom :',
+    emailLabelWithColon: 'Email :',
+    notAvailableLabel: 'Non disponible',
+    chatMessagePlaceholder: 'Écrivez un message ou ajoutez un emoji 💬',
+    privacyModalTitle: 'Politique de confidentialité',
+    privacyModalParagraph1: 'Cette plateforme collecte les données personnelles fournies lors de l’inscription (nom d’utilisateur, mot de passe) uniquement pour fournir le service de réseau social.',
+    privacyModalParagraph2: 'Les données ne sont pas cédées à des tiers ni utilisées à des fins commerciales. Les images téléchargées sont visibles par les autres utilisateurs inscrits.',
+    privacyModalParagraph3: 'Vous pouvez accéder, modifier ou supprimer vos données à tout moment depuis les paramètres du profil.',
+    privacyModalParagraph4: 'Pour toute demande liée à la confidentialité, utilisez la fonction « Contactez-nous ».',
+    contactModalTitle: "Contacter l'admin",
+    contactModalDescription: "Envoyez un message privé à l'administrateur de la plateforme.",
+    messageLabel: 'Message',
+    contactMessagePlaceholder: 'Écrivez votre message...',
+    mustBeAuthenticatedMessage: 'Vous devez être {link} pour envoyer un message.',
+    authenticatedLinkLabel: 'authentifié',
+    unknownRoleLabel: 'Rôle indisponible',
+    roleStandard: 'Utilisateur standard',
+    roleModerator: 'Modérateur',
   },
   de: {
     settingsTitle: '⚙️ Einstellungen',
@@ -511,6 +646,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: 'Neues Konto',
     signupTitle: 'Erstelle dein Profil.',
     signupSubtitle: 'Registriere dich, um dem Feed beizutreten, Freunde hinzuzufügen, Likes zu geben und zu chatten.',
+    availableUsersTitle: 'Verfügbare Nutzer',
+    availableUsersDescription: 'Entdecke Profile, sende Freundschaftsanfragen und starte neue Chats.',
+    profileAction: 'Profil',
+    addAction: 'Hinzufügen',
+    messageAction: 'Nachricht',
+    noOtherUsersMessage: 'Keine anderen Nutzer verfügbar.',
+    chatWithTemplate: 'Chat mit {username}',
+    descriptionLabel: 'Beschreibung:',
+    roleLabel: 'Rolle:',
+    nameLabel: 'Name:',
+    emailLabelWithColon: 'E-Mail:',
+    notAvailableLabel: 'Nicht verfügbar',
+    chatMessagePlaceholder: 'Schreibe eine Nachricht oder füge ein Emoji hinzu 💬',
+    privacyModalTitle: 'Datenschutzerklärung',
+    privacyModalParagraph1: 'Diese Plattform sammelt die bei der Registrierung angegebenen personenbezogenen Daten (Benutzername, Passwort) ausschließlich zur Bereitstellung des sozialen Netzwerks.',
+    privacyModalParagraph2: 'Die Daten werden nicht an Dritte weitergegeben und nicht zu kommerziellen Zwecken verwendet. Hochgeladene Bilder sind für andere registrierte Nutzer sichtbar.',
+    privacyModalParagraph3: 'Du kannst jederzeit über die Profileinstellungen auf deine Daten zugreifen, sie ändern oder löschen.',
+    privacyModalParagraph4: 'Für alle datenschutzbezogenen Anfragen nutze die Funktion „Kontakt“.',
+    contactModalTitle: 'Admin kontaktieren',
+    contactModalDescription: 'Sende eine private Nachricht an den Administrator der Plattform.',
+    messageLabel: 'Nachricht',
+    contactMessagePlaceholder: 'Schreibe deine Nachricht...',
+    mustBeAuthenticatedMessage: 'Du musst {link} um eine Nachricht zu senden.',
+    authenticatedLinkLabel: 'angemeldet sein',
+    unknownRoleLabel: 'Rolle nicht verfügbar',
+    roleStandard: 'Standardnutzer',
+    roleModerator: 'Moderator',
   },
   zh: {
     settingsTitle: '⚙️ 设置',
@@ -595,6 +757,33 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     signupEyebrow: '新账户',
     signupTitle: '创建你的个人资料。',
     signupSubtitle: '注册加入动态，添加朋友，点赞并开始聊天。',
+    availableUsersTitle: '可用用户',
+    availableUsersDescription: '查看个人资料、发送好友请求并开启新聊天。',
+    profileAction: '资料',
+    addAction: '添加',
+    messageAction: '消息',
+    noOtherUsersMessage: '没有其他可用用户。',
+    chatWithTemplate: '与 {username} 聊天',
+    descriptionLabel: '描述：',
+    roleLabel: '角色：',
+    nameLabel: '姓名：',
+    emailLabelWithColon: '邮箱：',
+    notAvailableLabel: '不可用',
+    chatMessagePlaceholder: '输入消息或添加表情 💬',
+    privacyModalTitle: '隐私政策',
+    privacyModalParagraph1: '本平台仅为提供社交网络服务而收集注册时提供的个人数据（用户名、密码）。',
+    privacyModalParagraph2: '数据不会提供给第三方，也不会用于商业目的。上传的图片对其他已注册用户可见。',
+    privacyModalParagraph3: '您可以随时在个人资料设置中访问、修改或删除您的数据。',
+    privacyModalParagraph4: '如有任何隐私相关请求，请使用“联系我们”功能。',
+    contactModalTitle: '联系管理员',
+    contactModalDescription: '向平台管理员发送私信。',
+    messageLabel: '消息',
+    contactMessagePlaceholder: '输入你的消息...',
+    mustBeAuthenticatedMessage: '你必须先{link}才能发送消息。',
+    authenticatedLinkLabel: '登录',
+    unknownRoleLabel: '角色不可用',
+    roleStandard: '普通用户',
+    roleModerator: '版主',
   },
 };
 
@@ -648,6 +837,50 @@ function applyLanguageToUi(language: LanguageCode) {
       return;
     }
     element.placeholder = dictionary[key];
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-role-value]').forEach((element) => {
+    const role = element.dataset.roleValue;
+    if (role === 'moderator') {
+      element.textContent = dictionary.roleModerator;
+      return;
+    }
+    if (role === 'standard') {
+      element.textContent = dictionary.roleStandard;
+      return;
+    }
+    if (role) {
+      console.warn(`Unknown role value for translation: ${role}`);
+      element.textContent = dictionary.unknownRoleLabel;
+    }
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-i18n-chat-title]').forEach((element) => {
+    const username = element.dataset.chatTitleUser;
+    if (!username) {
+      return;
+    }
+    element.textContent = dictionary.chatWithTemplate.replace('{username}', username);
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-i18n-template-key]').forEach((element) => {
+    const key = element.dataset.i18nTemplateKey;
+    if (!key || !isTranslationKey(key)) {
+      return;
+    }
+
+    const template = dictionary[key];
+    const link = element.querySelector<HTMLAnchorElement>('[data-auth-link]');
+    if (!link || !template.includes('{link}')) {
+      element.textContent = template;
+      return;
+    }
+
+    const [prefix = '', suffix = ''] = template.split('{link}');
+    const translatedLink = link.cloneNode(true) as HTMLAnchorElement;
+    translatedLink.textContent = dictionary.authenticatedLinkLabel;
+
+    element.replaceChildren(document.createTextNode(prefix), translatedLink, document.createTextNode(suffix));
   });
 
   document.querySelectorAll<HTMLButtonElement>('[data-like-button]').forEach((button) => {

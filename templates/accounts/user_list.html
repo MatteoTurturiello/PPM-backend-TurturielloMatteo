@@ -3,8 +3,8 @@
 <section class="page-intro">
     <div>
         <p class="eyebrow">Community</p>
-        <h1>Utenti disponibili</h1>
-        <p class="section-copy">Scopri profili, invia richieste di amicizia e apri nuove chat.</p>
+        <h1 data-i18n-key="availableUsersTitle">Utenti disponibili</h1>
+        <p class="section-copy" data-i18n-key="availableUsersDescription">Scopri profili, invia richieste di amicizia e apri nuove chat.</p>
     </div>
 </section>
 
@@ -19,16 +19,16 @@
                 {% endif %}
             </div>
             <h2>{{ profile_user.username }}</h2>
-            <p>{{ profile_user.get_role_display }}</p>
+            <p data-role-value="{{ profile_user.role }}">{{ profile_user.get_role_display }}</p>
             <div class="action-row action-row--center">
-                <a class="text-button" href="{% url 'accounts:profile-detail' profile_user.pk %}">Profilo</a>
-                <a class="text-button" href="{% url 'social:send-friend-request' profile_user.pk %}">Aggiungi</a>
-                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}">Messaggio</a>
+                <a class="text-button" href="{% url 'accounts:profile-detail' profile_user.pk %}" data-i18n-key="profileAction">Profilo</a>
+                <a class="text-button" href="{% url 'social:send-friend-request' profile_user.pk %}" data-i18n-key="addAction">Aggiungi</a>
+                <a class="text-button" href="{% url 'social:conversation-start' profile_user.pk %}" data-i18n-key="messageAction">Messaggio</a>
             </div>
         </article>
     {% empty %}
         <div class="empty-state">
-            <p>Nessun altro utente disponibile.</p>
+            <p data-i18n-key="noOtherUsersMessage">Nessun altro utente disponibile.</p>
         </div>
     {% endfor %}
 </div>

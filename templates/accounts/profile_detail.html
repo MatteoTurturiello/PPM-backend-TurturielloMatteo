@@ -11,11 +11,21 @@
     <div class="profile-hero__content">
         <p class="eyebrow" data-i18n-key="profileEyebrow">Profilo</p>
         <h1>{{ profile_user.username }}</h1>
-        <p class="section-copy">{% if profile_user.bio %}{{ profile_user.bio }}{% else %}<span data-i18n-key="noBioMessage">Nessuna bio impostata.</span>{% endif %}</p>
+        <p class="section-copy">
+            <strong data-i18n-key="descriptionLabel">Descrizione:</strong>
+            {% if profile_user.bio %}{{ profile_user.bio }}{% else %}<span data-i18n-key="noBioMessage">Nessuna bio impostata.</span>{% endif %}
+        </p>
         <div class="profile-meta">
-            <span><strong>Ruolo:</strong> {{ profile_user.get_role_display }}</span>
-            <span><strong>Nome:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</span>
-            <span><strong>Email:</strong> {{ profile_user.email|default:'Non disponibile' }}</span>
+            <span><strong data-i18n-key="roleLabel">Ruolo:</strong> <span data-role-value="{{ profile_user.role }}">{{ profile_user.get_role_display }}</span></span>
+            <span><strong data-i18n-key="nameLabel">Nome:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</span>
+            <span>
+                <strong data-i18n-key="emailLabelWithColon">Email:</strong>
+                {% if profile_user.email %}
+                    {{ profile_user.email }}
+                {% else %}
+                    <span data-i18n-key="notAvailableLabel">Non disponibile</span>
+                {% endif %}
+            </span>
         </div>
         <div class="action-row">
             {% if user.pk == profile_user.pk %}

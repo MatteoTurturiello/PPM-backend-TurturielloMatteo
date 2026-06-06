@@ -843,6 +843,7 @@ function applyLanguageToUi(language: LanguageCode) {
       return;
     }
     if (role) {
+      element.textContent = role;
       console.warn(`Unknown role value for translation: ${role}`);
     }
   });

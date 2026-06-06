@@ -151,7 +151,7 @@
                     </div>
                 </form>
             {% else %}
-                <p data-i18n-template-key="mustBeAuthenticatedMessage"><a href="{% url 'login' %}" data-auth-link>autenticato</a></p>
+                <p data-i18n-template-key="mustBeAuthenticatedMessage">Devi essere <a href="{% url 'login' %}" data-auth-link>autenticato</a> per inviare un messaggio.</p>
                 <div class="modal-dialog__actions">
                     <button type="button" class="pill-link pill-link--solid" onclick="this.closest('dialog').close()" data-i18n-key="closeAction">Chiudi</button>
                 </div>

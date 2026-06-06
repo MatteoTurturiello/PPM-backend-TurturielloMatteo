@@ -949,7 +949,7 @@ function applyLanguageToUi(language: LanguageCode) {
     element.dataset.noFileText = dictionary.noFileSelected;
     const fileInputId = element.dataset.fileInputId;
     const fileInput = fileInputId ? document.getElementById(fileInputId) as HTMLInputElement | null : null;
-    const [file] = fileInput?.files ?? [];
+    const file = fileInput?.files?.[0];
     element.textContent = file ? `${dictionary.selectedFilePrefix}: ${file.name}` : dictionary.noFileSelected;
   });
 

@@ -59,6 +59,7 @@ type TranslationKey =
   | 'postPhotoLabel'
   | 'quickEmojisLabel'
   | 'noFileSelected'
+  | 'selectedFilePrefix'
   | 'savePostAction'
   | 'settingsEyebrow'
   | 'editProfileDescription'
@@ -77,6 +78,17 @@ type TranslationKey =
   | 'loginAction'
   | 'createAccountAction'
   | 'postContentPlaceholder'
+  | 'usernamePlaceholder'
+  | 'firstNamePlaceholder'
+  | 'lastNamePlaceholder'
+  | 'emailPlaceholder'
+  | 'bioPlaceholder'
+  | 'noAccountPrompt'
+  | 'signupNowAction'
+  | 'hasAccountPrompt'
+  | 'currentFileLabel'
+  | 'changeFileLabel'
+  | 'removePhotoAction'
   | 'newMessageLabel'
   | 'sendAction'
   | 'openProfileAction'
@@ -175,6 +187,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: 'Foto del post',
     quickEmojisLabel: 'Emoji rapide',
     noFileSelected: 'Nessun file selezionato.',
+    selectedFilePrefix: 'File selezionato',
     savePostAction: 'Salva post',
     settingsEyebrow: 'Impostazioni',
     editProfileDescription: 'Aggiorna i tuoi dati e aggiungi una foto profilo leggera.',
@@ -193,6 +206,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: 'Accedi',
     createAccountAction: 'Crea account',
     postContentPlaceholder: 'Condividi un pensiero, una foto o una emoji ✨',
+    usernamePlaceholder: 'Scegli un username',
+    firstNamePlaceholder: 'Nome',
+    lastNamePlaceholder: 'Cognome',
+    emailPlaceholder: 'email@esempio.it',
+    bioPlaceholder: 'Racconta qualcosa di te',
+    noAccountPrompt: 'Non hai un account?',
+    signupNowAction: 'Registrati ora',
+    hasAccountPrompt: 'Hai già un account?',
+    currentFileLabel: 'Attualmente',
+    changeFileLabel: 'Modifica',
+    removePhotoAction: 'Rimuovi foto',
     newMessageLabel: 'Nuovo messaggio',
     sendAction: 'Invia',
     openProfileAction: 'Apri profilo',
@@ -286,6 +310,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: 'Post photo',
     quickEmojisLabel: 'Quick emojis',
     noFileSelected: 'No file selected.',
+    selectedFilePrefix: 'Selected file',
     savePostAction: 'Save post',
     settingsEyebrow: 'Settings',
     editProfileDescription: 'Update your info and add a lightweight profile photo.',
@@ -304,6 +329,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: 'Sign in',
     createAccountAction: 'Create account',
     postContentPlaceholder: 'Share a thought, a photo or an emoji ✨',
+    usernamePlaceholder: 'Choose a username',
+    firstNamePlaceholder: 'First name',
+    lastNamePlaceholder: 'Last name',
+    emailPlaceholder: 'email@example.com',
+    bioPlaceholder: 'Tell us something about you',
+    noAccountPrompt: 'Don’t have an account?',
+    signupNowAction: 'Sign up now',
+    hasAccountPrompt: 'Already have an account?',
+    currentFileLabel: 'Currently',
+    changeFileLabel: 'Change',
+    removePhotoAction: 'Remove photo',
     newMessageLabel: 'New message',
     sendAction: 'Send',
     openProfileAction: 'Open profile',
@@ -397,6 +433,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: 'Foto de la publicación',
     quickEmojisLabel: 'Emojis rápidos',
     noFileSelected: 'Ningún archivo seleccionado.',
+    selectedFilePrefix: 'Archivo seleccionado',
     savePostAction: 'Guardar publicación',
     settingsEyebrow: 'Configuración',
     editProfileDescription: 'Actualiza tus datos y añade una foto de perfil ligera.',
@@ -415,6 +452,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: 'Iniciar sesión',
     createAccountAction: 'Crear cuenta',
     postContentPlaceholder: 'Comparte un pensamiento, una foto o un emoji ✨',
+    usernamePlaceholder: 'Elige un nombre de usuario',
+    firstNamePlaceholder: 'Nombre',
+    lastNamePlaceholder: 'Apellido',
+    emailPlaceholder: 'correo@ejemplo.com',
+    bioPlaceholder: 'Cuéntanos algo sobre ti',
+    noAccountPrompt: '¿No tienes una cuenta?',
+    signupNowAction: 'Regístrate ahora',
+    hasAccountPrompt: '¿Ya tienes una cuenta?',
+    currentFileLabel: 'Actualmente',
+    changeFileLabel: 'Cambiar',
+    removePhotoAction: 'Quitar foto',
     newMessageLabel: 'Nuevo mensaje',
     sendAction: 'Enviar',
     openProfileAction: 'Abrir perfil',
@@ -508,6 +556,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: 'Photo de la publication',
     quickEmojisLabel: 'Emojis rapides',
     noFileSelected: 'Aucun fichier sélectionné.',
+    selectedFilePrefix: 'Fichier sélectionné',
     savePostAction: 'Enregistrer la publication',
     settingsEyebrow: 'Paramètres',
     editProfileDescription: 'Mettez à jour vos informations et ajoutez une photo de profil légère.',
@@ -526,6 +575,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: 'Se connecter',
     createAccountAction: 'Créer un compte',
     postContentPlaceholder: 'Partagez une pensée, une photo ou un emoji ✨',
+    usernamePlaceholder: "Choisissez un nom d'utilisateur",
+    firstNamePlaceholder: 'Prénom',
+    lastNamePlaceholder: 'Nom',
+    emailPlaceholder: 'email@exemple.fr',
+    bioPlaceholder: 'Parlez-nous un peu de vous',
+    noAccountPrompt: 'Vous n’avez pas de compte ?',
+    signupNowAction: 'Inscrivez-vous maintenant',
+    hasAccountPrompt: 'Vous avez déjà un compte ?',
+    currentFileLabel: 'Actuellement',
+    changeFileLabel: 'Modifier',
+    removePhotoAction: 'Supprimer la photo',
     newMessageLabel: 'Nouveau message',
     sendAction: 'Envoyer',
     openProfileAction: 'Ouvrir le profil',
@@ -619,6 +679,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: 'Beitragsfoto',
     quickEmojisLabel: 'Schnelle Emojis',
     noFileSelected: 'Keine Datei ausgewählt.',
+    selectedFilePrefix: 'Ausgewählte Datei',
     savePostAction: 'Beitrag speichern',
     settingsEyebrow: 'Einstellungen',
     editProfileDescription: 'Aktualisiere deine Daten und füge ein leichtes Profilbild hinzu.',
@@ -637,6 +698,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: 'Anmelden',
     createAccountAction: 'Konto erstellen',
     postContentPlaceholder: 'Teile einen Gedanken, ein Foto oder ein Emoji ✨',
+    usernamePlaceholder: 'Wähle einen Benutzernamen',
+    firstNamePlaceholder: 'Vorname',
+    lastNamePlaceholder: 'Nachname',
+    emailPlaceholder: 'email@beispiel.de',
+    bioPlaceholder: 'Erzähl etwas über dich',
+    noAccountPrompt: 'Du hast noch kein Konto?',
+    signupNowAction: 'Jetzt registrieren',
+    hasAccountPrompt: 'Hast du schon ein Konto?',
+    currentFileLabel: 'Aktuell',
+    changeFileLabel: 'Ändern',
+    removePhotoAction: 'Foto entfernen',
     newMessageLabel: 'Neue Nachricht',
     sendAction: 'Senden',
     openProfileAction: 'Profil öffnen',
@@ -730,6 +802,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     postPhotoLabel: '帖子图片',
     quickEmojisLabel: '快捷表情',
     noFileSelected: '未选择文件。',
+    selectedFilePrefix: '已选择文件',
     savePostAction: '保存帖子',
     settingsEyebrow: '设置',
     editProfileDescription: '更新您的信息并添加一张轻量级头像。',
@@ -748,6 +821,17 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     loginAction: '登录',
     createAccountAction: '创建账户',
     postContentPlaceholder: '分享一个想法、照片或表情 ✨',
+    usernamePlaceholder: '选择用户名',
+    firstNamePlaceholder: '名字',
+    lastNamePlaceholder: '姓氏',
+    emailPlaceholder: 'email@example.com',
+    bioPlaceholder: '介绍一下你自己',
+    noAccountPrompt: '还没有账号？',
+    signupNowAction: '立即注册',
+    hasAccountPrompt: '已有账号？',
+    currentFileLabel: '当前',
+    changeFileLabel: '修改',
+    removePhotoAction: '移除头像',
     newMessageLabel: '新消息',
     sendAction: '发送',
     openProfileAction: '打开资料',
@@ -837,6 +921,10 @@ function applyLanguageToUi(language: LanguageCode) {
       return;
     }
     element.placeholder = dictionary[key];
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-selected-file]').forEach((element) => {
+    element.dataset.selectedFilePrefix = dictionary.selectedFilePrefix;
   });
 
   document.querySelectorAll<HTMLElement>('[data-role-value]').forEach((element) => {

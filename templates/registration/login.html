@@ -19,7 +19,10 @@
         {% if form.password.errors %}<div class="form-errors">{{ form.password.errors }}</div>{% endif %}
 
         <button class="pill-link pill-link--solid auth-form__submit" type="submit" data-i18n-key="loginAction">Accedi</button>
-        <p class="helper-text">Non hai un account? <a class="text-button" href="{% url 'accounts:signup' %}">Registrati ora</a></p>
+        <p class="helper-text">
+            <span data-i18n-key="noAccountPrompt">Non hai un account?</span>
+            <a class="text-button" href="{% url 'accounts:signup' %}" data-i18n-key="signupNowAction">Registrati ora</a>
+        </p>
     </form>
 </section>
 {% endblock %}

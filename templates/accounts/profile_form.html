@@ -33,9 +33,8 @@
     {{ form.bio }}
     {% if form.bio.errors %}<div class="form-errors">{{ form.bio.errors }}</div>{% endif %}
 
-    <label class="form-label" for="{{ form.profile_image.id_for_label }}" data-i18n-key="profilePhotoLabel">Foto profilo</label>
+    <label class="form-label" data-i18n-key="profilePhotoLabel">Foto profilo</label>
     {{ form.profile_image }}
-    <p class="helper-text" data-i18n-key="maxPhotoSize">Massimo 450 KB e 1600×1600 px.</p>
     {% if form.profile_image.errors %}<div class="form-errors">{{ form.profile_image.errors }}</div>{% endif %}
 
     <div class="action-row">

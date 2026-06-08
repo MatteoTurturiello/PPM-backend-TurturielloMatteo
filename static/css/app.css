@@ -685,6 +685,13 @@ body[data-theme='dark'] .shell-panel__contact-msg {
   background: rgba(76, 29, 149, 0.24);
 }
 
+body[data-theme='dark'] a.pill-link[data-i18n-key='editProfileAction'],
+body[data-theme='dark'] label.pill-link[data-i18n-key='chooseFileAction'] {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #0f172a;
+  border-color: transparent;
+}
+
 .shell-panel__link,
 .shell-panel__chat {
   display: grid;

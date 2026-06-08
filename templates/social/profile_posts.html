@@ -11,7 +11,7 @@
         <p class="section-copy" data-i18n-key="profilePostsDescription">Qui trovi tutti i post pubblicati in ordine dal più recente al più vecchio.</p>
     </div>
     {% if user.pk == profile_owner.pk %}
-        <a class="pill-link" href="{% url 'social:post-create' %}" data-i18n-key="newPostAction">Nuovo post</a>
+        <a class="pill-link profile-posts__new-post" href="{% url 'social:post-create' %}" data-i18n-key="newPostAction">Nuovo post</a>
     {% endif %}
 </section>
 

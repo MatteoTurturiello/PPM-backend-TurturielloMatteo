@@ -45,6 +45,10 @@ input[type="file"] {
   color: var(--text);
 }
 
+input[type="file"][data-i18n-file-input] {
+  display: none;
+}
+
 textarea:focus,
 input:focus {
   outline: 2px solid rgba(139, 92, 246, 0.2);
@@ -691,7 +695,7 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
   .shell-panel {
     position: sticky;
     top: 6.6rem;
-    width: min(240px, calc(100vw - 2rem));
+    width: min(240px, calc(50vw - 2rem));
     pointer-events: auto;
   }
 
@@ -718,6 +722,7 @@ h2 { margin-bottom: 0.8rem; font-size: 1.3rem; }
 
   .site-header__inner {
     display: flex;
+    align-items: center;
   }
 
   .site-header__side,

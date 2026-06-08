@@ -36,7 +36,7 @@
     </div>
 
     <label class="form-label" for="{{ form.image.id_for_label }}" data-i18n-key="postPhotoLabel">Foto del post</label>
-    <span data-i18n-key="chooseFileAction">Scegli file</span>:
+    <label class="pill-link" for="{{ form.image.id_for_label }}" data-i18n-key="chooseFileAction">Scegli file</label>
     {{ form.image }}
     <p class="helper-text" data-i18n-key="maxPhotoSize">Massimo 450 KB e 1600×1600 px.</p>
     <p class="helper-text" data-selected-file data-file-input-id="{{ form.image.id_for_label }}" data-i18n-key="noFileSelected">Nessun file selezionato.</p>

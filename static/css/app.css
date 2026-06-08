@@ -676,12 +676,7 @@ body[data-theme='dark'] .shell-panel__toggle {
   color: #fff;
 }
 
-body[data-theme='dark'] [data-language-option]:not([aria-pressed="true"]) {
-  background: rgba(30, 41, 70, 0.95);
-  color: #fff;
-  border-color: rgba(196, 181, 253, 0.38);
-}
-
+body[data-theme='dark'] [data-language-option]:not([aria-pressed="true"]),
 body[data-theme='dark'] .profile-posts__new-post {
   background: rgba(30, 41, 70, 0.95);
   color: #fff;

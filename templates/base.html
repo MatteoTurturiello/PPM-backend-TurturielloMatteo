@@ -38,6 +38,10 @@
                     {% endfor %}
                     <div class="shell-panel__section-title" data-i18n-key="languageSectionTitle">🌐 Lingua</div>
                     <button class="text-button shell-panel__language-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
+                    <button class="text-button shell-panel__language-btn shell-panel__theme-btn" type="button" data-theme-toggle>
+                        <span aria-hidden="true" data-theme-icon>☀️</span>
+                        <span data-theme-label data-i18n-key="themeToggleAction">Cambio tema</span>
+                    </button>
                     {% if not user.is_superuser %}
                     <div class="shell-panel__section-title" data-i18n-key="deleteAccountTitle">🗑️ Elimina account</div>
                     <p class="shell-panel__empty shell-panel__empty--small" data-i18n-key="deleteAccountDescription">Questa azione è irreversibile. Tutti i tuoi dati verranno eliminati.</p>

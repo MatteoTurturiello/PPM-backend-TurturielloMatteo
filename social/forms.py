@@ -18,6 +18,7 @@ class PostForm(forms.ModelForm):
                     'data-i18n-placeholder': 'postContentPlaceholder',
                 }
             ),
+            'image': forms.ClearableFileInput(attrs={'data-i18n-file-input': 'true'}),
         }
 
     def clean_content(self):

@@ -79,6 +79,7 @@ type TranslationKey =
   | 'passwordLabel'
   | 'loginAction'
   | 'createAccountAction'
+  | 'requiredFieldMessage'
   | 'postContentPlaceholder'
   | 'usernamePlaceholder'
   | 'firstNamePlaceholder'
@@ -210,6 +211,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: 'Password',
     loginAction: 'Accedi',
     createAccountAction: 'Crea account',
+    requiredFieldMessage: 'Compila questo campo.',
     postContentPlaceholder: 'Condividi un pensiero, una foto o una emoji ✨',
     usernamePlaceholder: 'Scegli un username',
     firstNamePlaceholder: 'Nome',
@@ -336,6 +338,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: 'Password',
     loginAction: 'Sign in',
     createAccountAction: 'Create account',
+    requiredFieldMessage: 'Please fill out this field.',
     postContentPlaceholder: 'Share a thought, a photo or an emoji ✨',
     usernamePlaceholder: 'Choose a username',
     firstNamePlaceholder: 'First name',
@@ -462,6 +465,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: 'Contraseña',
     loginAction: 'Iniciar sesión',
     createAccountAction: 'Crear cuenta',
+    requiredFieldMessage: 'Completa este campo.',
     postContentPlaceholder: 'Comparte un pensamiento, una foto o un emoji ✨',
     usernamePlaceholder: 'Elige un nombre de usuario',
     firstNamePlaceholder: 'Nombre',
@@ -588,6 +592,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: 'Mot de passe',
     loginAction: 'Se connecter',
     createAccountAction: 'Créer un compte',
+    requiredFieldMessage: 'Veuillez renseigner ce champ.',
     postContentPlaceholder: 'Partagez une pensée, une photo ou un emoji ✨',
     usernamePlaceholder: "Choisissez un nom d'utilisateur",
     firstNamePlaceholder: 'Prénom',
@@ -714,6 +719,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: 'Passwort',
     loginAction: 'Anmelden',
     createAccountAction: 'Konto erstellen',
+    requiredFieldMessage: 'Bitte fülle dieses Feld aus.',
     postContentPlaceholder: 'Teile einen Gedanken, ein Foto oder ein Emoji ✨',
     usernamePlaceholder: 'Wähle einen Benutzernamen',
     firstNamePlaceholder: 'Vorname',
@@ -840,6 +846,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     passwordLabel: '密码',
     loginAction: '登录',
     createAccountAction: '创建账户',
+    requiredFieldMessage: '请填写此字段。',
     postContentPlaceholder: '分享一个想法、照片或表情 ✨',
     usernamePlaceholder: '选择用户名',
     firstNamePlaceholder: '名字',
@@ -943,6 +950,28 @@ function applyLanguageToUi(language: LanguageCode) {
     }
     element.placeholder = dictionary[key];
   });
+
+  document
+    .querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('form input[required], form textarea[required], form select[required]')
+    .forEach((field) => {
+      field.dataset.requiredMessage = dictionary.requiredFieldMessage;
+      if (field.dataset.i18nValidationBound === 'true') {
+        return;
+      }
+      field.dataset.i18nValidationBound = 'true';
+      field.addEventListener('invalid', () => {
+        if (!field.validity.valueMissing) {
+          return;
+        }
+        const requiredMessage = field.dataset.requiredMessage ?? dictionary.requiredFieldMessage;
+        field.setCustomValidity(requiredMessage);
+      });
+      const clearValidityMessage = () => {
+        field.setCustomValidity('');
+      };
+      field.addEventListener('input', clearValidityMessage);
+      field.addEventListener('change', clearValidityMessage);
+    });
 
   document.querySelectorAll<HTMLElement>('[data-selected-file]').forEach((element) => {
     element.dataset.selectedFilePrefix = dictionary.selectedFilePrefix;

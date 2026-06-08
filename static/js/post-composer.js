@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (fileInput && fileLabel) {
-    const noFileSelectedText = fileLabel.textContent || 'No file selected.';
     fileInput.addEventListener('change', () => {
       const [file] = fileInput.files || [];
       const selectedFilePrefix = fileLabel.dataset.selectedFilePrefix || 'Selected file';
-      fileLabel.textContent = file ? `${selectedFilePrefix}: ${file.name}` : noFileSelectedText;
+      const noFileText = fileLabel.dataset.noFileText || fileLabel.textContent || 'No file selected.';
+      fileLabel.textContent = file ? `${selectedFilePrefix}: ${file.name}` : noFileText;
     });
   }
 });

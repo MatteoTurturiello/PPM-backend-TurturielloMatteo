@@ -5,7 +5,13 @@
         <p class="eyebrow" data-i18n-key="signupEyebrow">Nuovo account</p>
         <h1 data-i18n-key="signupTitle">Crea il tuo profilo.</h1>
         <p class="section-copy" data-i18n-key="signupSubtitle">Registrati per entrare nel feed, aggiungere amici, lasciare like e iniziare a chattare.</p>
-        <button class="text-button auth-card__lang-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
+        <div class="auth-card__utility-actions">
+            <button class="text-button auth-card__lang-btn" type="button" data-language-open data-i18n-key="chooseLanguageAction">Scegli lingua</button>
+            <button class="text-button auth-card__theme-btn" type="button" data-theme-toggle>
+                <span aria-hidden="true" data-theme-icon>☀️</span>
+                <span data-theme-label data-i18n-key="themeToggleAction">Cambio tema</span>
+            </button>
+        </div>
     </div>
     <form method="post" class="auth-form auth-form--grid">
         {% csrf_token %}

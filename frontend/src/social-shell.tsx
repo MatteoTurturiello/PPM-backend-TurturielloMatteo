@@ -3,11 +3,13 @@ import { createRoot } from 'react-dom/client';
 
 type PanelName = 'settings' | 'messages' | null;
 type LanguageCode = 'it' | 'en' | 'es' | 'fr' | 'de' | 'zh';
+type ThemeName = 'light' | 'dark';
 type TranslationKey =
   | 'settingsTitle'
   | 'messagesTitle'
   | 'languageSectionTitle'
   | 'chooseLanguageAction'
+  | 'themeToggleAction'
   | 'languageModalTitle'
   | 'languageModalDescription'
   | 'closeAction'
@@ -132,6 +134,7 @@ type TranslationKey =
 
 const PANELS = ['settings', 'messages'] as const;
 const LANGUAGE_STORAGE_KEY = 'ppm-language';
+const THEME_STORAGE_KEY = 'ppm-theme';
 const LANGUAGES: LanguageCode[] = ['it', 'en', 'es', 'fr', 'de', 'zh'];
 
 const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
@@ -140,6 +143,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 Messaggi',
     languageSectionTitle: '🌐 Lingua',
     chooseLanguageAction: 'Scegli lingua',
+    themeToggleAction: 'Cambio tema',
     languageModalTitle: 'Seleziona lingua',
     languageModalDescription: "Scegli la lingua dell'interfaccia. I testi dei post restano invariati finché non premi Traduci.",
     closeAction: 'Chiudi',
@@ -267,6 +271,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 Messages',
     languageSectionTitle: '🌐 Language',
     chooseLanguageAction: 'Choose language',
+    themeToggleAction: 'Switch theme',
     languageModalTitle: 'Select language',
     languageModalDescription: 'Choose the interface language. Post texts stay unchanged until you press Translate.',
     closeAction: 'Close',
@@ -394,6 +399,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 Mensajes',
     languageSectionTitle: '🌐 Idioma',
     chooseLanguageAction: 'Elegir idioma',
+    themeToggleAction: 'Cambiar tema',
     languageModalTitle: 'Seleccionar idioma',
     languageModalDescription: 'Elige el idioma de la interfaz. Los textos de las publicaciones no cambian hasta pulsar Traducir.',
     closeAction: 'Cerrar',
@@ -521,6 +527,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 Messages',
     languageSectionTitle: '🌐 Langue',
     chooseLanguageAction: 'Choisir la langue',
+    themeToggleAction: 'Changer le thème',
     languageModalTitle: 'Choisir la langue',
     languageModalDescription: "Choisissez la langue de l'interface. Les textes des posts ne changent pas tant que vous n'appuyez pas sur Traduire.",
     closeAction: 'Fermer',
@@ -648,6 +655,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 Nachrichten',
     languageSectionTitle: '🌐 Sprache',
     chooseLanguageAction: 'Sprache wählen',
+    themeToggleAction: 'Thema wechseln',
     languageModalTitle: 'Sprache auswählen',
     languageModalDescription: 'Wähle die Sprache der Oberfläche. Post-Texte bleiben unverändert, bis du Übersetzen drückst.',
     closeAction: 'Schließen',
@@ -775,6 +783,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<TranslationKey, string>> = {
     messagesTitle: '💬 消息',
     languageSectionTitle: '🌐 语言',
     chooseLanguageAction: '选择语言',
+    themeToggleAction: '切换主题',
     languageModalTitle: '选择语言',
     languageModalDescription: '选择界面语言。帖子内容会保持原文，直到你点击翻译。',
     closeAction: '关闭',
@@ -926,6 +935,25 @@ function getSavedLanguage(): LanguageCode {
   return 'en';
 }
 
+function getSavedTheme(): ThemeName {
+  return window.localStorage.getItem(THEME_STORAGE_KEY) === 'dark' ? 'dark' : 'light';
+}
+
+function applyThemeToUi(theme: ThemeName, language: LanguageCode) {
+  document.body.dataset.theme = theme;
+  const icon = theme === 'dark' ? '🌙' : '☀️';
+  const label = TRANSLATIONS[language].themeToggleAction;
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((button) => {
+    button.setAttribute('aria-pressed', String(theme === 'dark'));
+    button.setAttribute('aria-label', `${label}: ${icon}`);
+    const iconElement = button.querySelector<HTMLElement>('[data-theme-icon]');
+    if (iconElement) {
+      iconElement.textContent = icon;
+    }
+  });
+}
+
 function isTranslationKey(value: string): value is TranslationKey {
   return value in TRANSLATIONS.it;
 }
@@ -1061,6 +1089,8 @@ function applyLanguageToUi(language: LanguageCode) {
     const optionLang = button.dataset.languageOption as LanguageCode | undefined;
     button.setAttribute('aria-pressed', String(optionLang === language));
   });
+
+  applyThemeToUi(getSavedTheme(), language);
 }
 
 async function translateText(text: string, targetLanguage: LanguageCode): Promise<string | null> {
@@ -1086,6 +1116,7 @@ async function translateText(text: string, targetLanguage: LanguageCode): Promis
 function ShellController() {
   const [activePanel, setActivePanel] = useState<PanelName>(null);
   const [language, setLanguage] = useState<LanguageCode>('en');
+  const [theme, setTheme] = useState<ThemeName>('light');
 
   useEffect(() => {
     syncPanelState(activePanel);
@@ -1123,8 +1154,11 @@ function ShellController() {
 
   useEffect(() => {
     const currentLanguage = getSavedLanguage();
+    const currentTheme = getSavedTheme();
     setLanguage(currentLanguage);
+    setTheme(currentTheme);
     applyLanguageToUi(currentLanguage);
+    applyThemeToUi(currentTheme, currentLanguage);
   }, []);
 
   useEffect(() => {
@@ -1158,6 +1192,26 @@ function ShellController() {
       languageButtons.forEach((button) => button.removeEventListener('click', onLanguageClick));
     };
   }, [language]);
+
+  useEffect(() => {
+    applyThemeToUi(theme, language);
+  }, [theme, language]);
+
+  useEffect(() => {
+    const themeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]'));
+    const onThemeClick = () => {
+      setTheme((currentTheme) => {
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        return nextTheme;
+      });
+    };
+
+    themeButtons.forEach((button) => button.addEventListener('click', onThemeClick));
+    return () => {
+      themeButtons.forEach((button) => button.removeEventListener('click', onThemeClick));
+    };
+  }, []);
 
   useEffect(() => {
     const translateButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-post-translate]'));
